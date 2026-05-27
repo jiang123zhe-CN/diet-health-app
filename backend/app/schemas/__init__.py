@@ -60,6 +60,7 @@ class DietPreferenceResponse(BaseModel):
 
 class LoginRequest(BaseModel):
     openid: str = Field(default="dev_test_user")
+    nickname: Optional[str] = None
 
 
 class TokenResponse(BaseModel):

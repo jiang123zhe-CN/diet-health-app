@@ -294,25 +294,25 @@
 <div class="page" id="page-goal">
     <div class="header">你的目标<br>是什么？</div>
     <div class="goal-option" onclick="selectGoal('fat_loss')">
-        <div class="idx">1</div><div><div class="title">减脂</div><div class="desc">控制热量摄入，降低体脂?/div></div>
+        <div class="idx">1</div><div><div class="title">减脂</div><div class="desc">控制热量摄入，降低体脂</div></div>
     </div>
     <div class="goal-option" onclick="selectGoal('muscle_gain')">
-        <div class="idx">2</div><div><div class="title">增肌</div><div class="desc">增加肌肉量，高蛋白饮食?/div></div>
+        <div class="idx">2</div><div><div class="title">增肌</div><div class="desc">增加肌肉量，高蛋白饮食</div></div>
     </div>
     <div class="goal-option" onclick="selectGoal('shaping')">
-        <div class="idx">3</div><div><div class="title">塑形</div><div class="desc">保持体重，优化体型?/div></div>
+        <div class="idx">3</div><div><div class="title">塑形</div><div class="desc">保持体重，优化体型</div></div>
     </div>
     <div class="goal-option" onclick="selectGoal('healthy')">
-        <div class="idx">4</div><div><div class="title">健康饮食</div><div class="desc">均衡营养，保持健康?/div></div>
+        <div class="idx">4</div><div><div class="title">健康饮食</div><div class="desc">均衡营养，保持健康</div></div>
     </div>
-    <button class="btn" onclick="nextToProfile()" style="margin-top:20px;">下一步?/button>
+    <button class="btn" onclick="nextToProfile()" style="margin-top:20px;">下一步</button>
 </div>
 
 <!-- Profile -->
 <div class="page" id="page-profile">
     <div class="header">身体数据</div>
     <div class="card">
-        <div class="input-group"><label>性别</label><select id="inp-gender"><option value="male">?/option><option value="female">?/option></select></div>
+        <div class="input-group"><label>性别</label><select id="inp-gender"><option value="male">男</option><option value="female">女</option></select></div>
         <div class="input-group"><label>年龄</label><input type="number" id="inp-age" value="25" min="10" max="80"></div>
         <div class="input-group"><label>身高 cm</label><input type="number" id="inp-height" value="170" min="100" max="220" step="0.1"></div>
         <div class="input-group"><label>体重 kg</label><input type="number" id="inp-weight" value="70" min="30" max="200" step="0.1"></div>
@@ -328,8 +328,8 @@
     <div class="step-dots" id="q-steps" style="display:flex;gap:6px;justify-content:center;margin-bottom:20px;"></div>
     <div id="q-content"></div>
     <div style="display:flex;gap:10px;margin-top:16px;" id="q-nav">
-        <button class="btn btn-secondary" onclick="prevQStep()" id="q-prev" style="display:none;">上一步?/button>
-        <button class="btn" onclick="nextQStep()" id="q-next">下一步?/button>
+        <button class="btn btn-secondary" onclick="prevQStep()" id="q-prev" style="display:none;">上一步</button>
+        <button class="btn" onclick="nextQStep()" id="q-next">下一步</button>
     </div>
 </div>
 
@@ -360,10 +360,10 @@
         <div class="input-group"><label>体重 kg</label><input type="number" id="hr-weight" step="0.1" placeholder="可选?></div>
         <div class="input-group"><label>今日摄入 kcal</label><input type="number" id="hr-calories" value="0"></div>
         <div class="input-group"><label>饮食执行率?%</label><input type="number" id="hr-compliance" value="80" min="0" max="100"></div>
-        <div class="input-group"><label>心情</label><select id="hr-mood"><option value="great">很好</option><option value="ok">一般?/option><option value="bad">不好</option></select></div>
+        <div class="input-group"><label>心情</label><select id="hr-mood"><option value="great">很好</option><option value="ok">一般</option><option value="bad">不好</option></select></div>
         <div class="input-group" style="display:flex;align-items:center;gap:10px;">
             <input type="checkbox" id="hr-plan-followed" style="width:18px;height:18px;accent-color:var(--text);">
-            <label style="margin-bottom:0;cursor:pointer;" for="hr-plan-followed">今日按计划饮食?/label>
+            <label style="margin-bottom:0;cursor:pointer;" for="hr-plan-followed">今日按计划饮食</label>
         </div>
         <button class="btn" onclick="saveHealthRecord()" style="margin-top:8px;">保存记录</button>
     </div>
@@ -379,11 +379,11 @@
 <div class="page" id="page-shopping">
     <div class="header-back" onclick="navigateTo('home')">返回</div>
     <div style="display:flex;gap:6px;margin:8px 0 8px;flex-wrap:wrap;">
-        <button class="btn btn-sm" onclick="loadShoppingList('3day')">3 天?/button>
-        <button class="btn btn-sm btn-secondary" onclick="loadShoppingList('7day')">7 天?/button>
-        <button class="btn btn-sm btn-secondary" onclick="loadShoppingList('30day')">30 天?/button>
-        <button class="btn btn-sm" id="btn-group-flat" onclick="setShoppingMode('flat')">汇总?/button>
-        <button class="btn btn-sm btn-secondary" id="btn-group-daily" onclick="setShoppingMode('daily')">按日配送?/button>
+        <button class="btn btn-sm" onclick="loadShoppingList('3day')">3 天</button>
+        <button class="btn btn-sm btn-secondary" onclick="loadShoppingList('7day')">7 天</button>
+        <button class="btn btn-sm btn-secondary" onclick="loadShoppingList('30day')">30 天</button>
+        <button class="btn btn-sm" id="btn-group-flat" onclick="setShoppingMode('flat')">汇总</button>
+        <button class="btn btn-sm btn-secondary" id="btn-group-daily" onclick="setShoppingMode('daily')">按日配送</button>
     </div>
     <div id="shopping-items"></div>
     <div id="order-summary"></div>
@@ -391,7 +391,7 @@
 
 <!-- Mine -->
 <div class="page" id="page-mine">
-    <div class="header">?/div>
+    <div class="header"></div>
     <div class="card">
         <div class="section-title">个人信息</div>
         <div class="mine-row"><span class="label">昵称</span><span id="mine-nickname">--</span></div>
@@ -415,9 +415,9 @@
     </div>
     <div class="card" style="margin-top:16px;">
         <div class="section-title">免责声明</div>
-        <p style="font-size:12px;color:var(--text-secondary);line-height:1.8;">AI AI 饮食方案仅供参考，不构成医疗建议。如有特殊健康状况，请咨询专业医生。?/p>
+        <p style="font-size:12px;color:var(--text-secondary);line-height:1.8;">AI AI 饮食方案仅供参考，不构成医疗建议。如有特殊健康状况，请咨询专业医生。</p>
     </div>
-    <button class="btn btn-text" onclick="handleLogout()" style="margin-top:16px;width:100%;color:#d32f2f;">退出登录?/button>
+    <button class="btn btn-text" onclick="handleLogout()" style="margin-top:16px;width:100%;color:#d32f2f;">退出登录</button>
 </div>
 
 <!-- Swap -->
@@ -435,10 +435,10 @@
 
 <!-- Bottom Nav -->
 <div class="bottom-nav" id="bottom-nav" style="display:none;">
-    <div class="nav-item active" onclick="navigateTo('home')"><span class="icon">?/span>今日饮食</div>
-    <div class="nav-item" onclick="navigateTo('health')"><span class="icon">?/span>健康记录</div>
-    <div class="nav-item" onclick="navigateTo('shopping')"><span class="icon">?/span>采购清单</div>
-    <div class="nav-item" onclick="navigateTo('mine')"><span class="icon">?/span>?/div>
+    <div class="nav-item active" onclick="navigateTo('home')"><span class="icon">📋</span>今日饮食</div>
+    <div class="nav-item" onclick="navigateTo('health')"><span class="icon">💚</span>健康记录</div>
+    <div class="nav-item" onclick="navigateTo('shopping')"><span class="icon">🛒</span>采购清单</div>
+    <div class="nav-item" onclick="navigateTo('mine')"><span class="icon">👤</span>我的</div>
 </div>
 
 <script>
@@ -515,7 +515,7 @@ async function handleLogin() {
     const openid = name === 'admin' ? 'test_user_001' : 'user_' + name;
     try {
         showPage('loading');
-        const data = await api('POST', '/user/login', { openid });
+        const data = await api('POST', '/user/login', { openid, nickname: name });
         token = data.access_token;
         localStorage.setItem('token', token);
         currentUser = data.user;
@@ -589,7 +589,7 @@ function renderQStep() {
     switch (currentQStep) {
     case 1: // Cuisine & Flavor
         content.innerHTML = `
-            <div class="card"><div class="section-title">喜欢的菜系?/div>
+            <div class="card"><div class="section-title">喜欢的菜系</div>
                 ${cuisineOptions.map(c => `<span class="tag ${qData.cuisine_preferences.includes(c)?'selected':''}" onclick="toggleQMulti('cuisine_preferences','${c}')">${c}</span>`).join('')}
             </div>
             <div class="card"><div class="section-title">口味偏好</div>
@@ -625,13 +625,13 @@ function renderQStep() {
         content.innerHTML = `
             <div class="card">
                 <div class="input-group"><label>减重/增肌目标详情</label><input type="text" id="q-goal-detail" value="${escHtml(qData.weight_goal_detail)}" placeholder="如：想减掉腹部脂肪，增加上肢力量" onchange="qData.weight_goal_detail=this.value"></div>
-                <div class="input-group"><label>预期时间?/label><input type="text" id="q-timeline" value="${escHtml(qData.goal_timeline)}" placeholder="如：3个月减5kg?kg" onchange="qData.goal_timeline=this.value"></div>
+                <div class="input-group"><label>预期时间</label><input type="text" id="q-timeline" value="${escHtml(qData.goal_timeline)}" placeholder="如：3个月减5kg?kg" onchange="qData.goal_timeline=this.value"></div>
                 <div class="input-group"><label>补充说明</label><input type="text" id="q-notes" value="${escHtml(qData.additional_notes)}" placeholder="其他想告诉营养师的信息? onchange="qData.additional_notes=this.value"></div>
             </div>`;
         break;
     case 5: // Ingredient preferences + submit
         content.innerHTML = `
-            <div class="card"><div class="section-title">喜欢的食物?/div><div id="tags-like"></div></div>
+            <div class="card"><div class="section-title">喜欢的食物</div><div id="tags-like"></div></div>
             <div class="card"><div class="section-title">不喜欢的食材</div><div id="tags-dislike"></div></div>
             <div class="card"><div class="section-title">过敏食材</div><div id="tags-allergy"></div></div>`;
         renderPreferenceTags();
@@ -791,7 +791,7 @@ function renderHome() {
     // Nutrients
     nutrientsEl.innerHTML = `
         <div class="card">
-            <div class="section-title">每日营养素目标?/div>
+            <div class="section-title">每日营养素目标</div>
             <div class="nutrient-bar">
                 <div class="nutrient-item"><div class="val">${currentPlan.calories_target}</div><div class="lbl">热量 kcal</div></div>
                 <div class="nutrient-item"><div class="val">${currentPlan.protein_target_g}</div><div class="lbl">蛋白 g</div></div>
@@ -1171,7 +1171,7 @@ function renderOrderSummary() {
     document.getElementById('order-summary').innerHTML = `
         <div class="order-summary">
             <div class="total-row"><span>预估总价</span><span>¥${totalPrice.toFixed(1)}</span></div>
-            <div class="detail-row"><span>${totalItems} 种食材?/span><span>?${qtyDisplay}</span></div>
+            <div class="detail-row"><span>${totalItems} 种食材</span><span>?${qtyDisplay}</span></div>
             <div style="display:flex;gap:8px;margin-top:12px;">
                 <button class="btn btn-sm btn-secondary" onclick="addCustomItemRow()">+ 添加食材</button>
                 <button class="btn btn-sm" onclick="confirmOrder()">确认下单</button>

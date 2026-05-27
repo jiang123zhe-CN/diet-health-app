@@ -24,11 +24,22 @@ async def login(req: LoginRequest, db: AsyncSession = Depends(get_db)):
     user = result.scalar_one_or_none()
     is_new = False
     if user is None:
-        user = User(openid=req.openid, nickname=f"用户{req.openid[:6]}")
-        db.add(user)
-        await db.commit()
-        await db.refresh(user)
-        is_new = True
+        # Backward compat: check old format openid (user_name_timestamp)
+        old_result = await db.execute(
+            select(User).where(User.openid.like(f"{req.openid}_%")).limit(1)
+        )
+        old_user = old_result.scalars().first()
+        if old_user:
+            # Migrate old user to new openid format
+            old_user.openid = req.openid
+            await db.commit()
+            user = old_user
+        else:
+            user = User(openid=req.openid, nickname=req.nickname or f"用户{req.openid[:6]}")
+            db.add(user)
+            await db.commit()
+            await db.refresh(user)
+            is_new = True
     token = create_access_token({"sub": str(user.id)})
     return TokenResponse(access_token=token, user=UserResponse.model_validate(user), is_new=is_new)
 
