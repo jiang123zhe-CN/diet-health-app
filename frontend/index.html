@@ -1,9 +1,9 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>楗鍋ュ悍</title>
+    <title>饮食健康</title>
     <style>
         :root {
             --bg: #fff;
@@ -28,13 +28,13 @@
         .page.active { display: block; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* 鈹€鈹€ Typography 鈹€鈹€ */
+        /* ── Typography ── */
         .section-title {
             font-size: 11px; font-weight: 600; color: var(--text-secondary);
             text-transform: uppercase; letter-spacing: .6px; margin-bottom: 10px;
         }
 
-        /* 鈹€鈹€ Buttons 鈹€鈹€ */
+        /* ── Buttons ── */
         .btn { display: block; width: 100%; padding: 15px; border: none; border-radius: 10px;
             font-size: 16px; font-weight: 600; cursor: pointer; transition: all .15s;
             letter-spacing: -.2px; background: var(--text); color: #fff; }
@@ -45,7 +45,7 @@
         .btn-text { background: none; color: var(--text-secondary); font-weight: 500; font-size: 14px;
             width: auto; padding: 8px 0; }
 
-        /* 鈹€鈹€ Inputs 鈹€鈹€ */
+        /* ── Inputs ── */
         .input-group { margin: 18px 0; }
         .input-group label { display: block; font-size: 12px; font-weight: 500;
             color: var(--text-secondary); margin-bottom: 6px; }
@@ -56,17 +56,17 @@
         }
         .input-group input:focus, .input-group select:focus { border-color: var(--text); background: var(--bg); }
 
-        /* 鈹€鈹€ Cards 鈹€鈹€ */
+        /* ── Cards ── */
         .card { background: var(--card); border-radius: var(--radius); padding: 18px; margin: 10px 0; }
 
-        /* 鈹€鈹€ Toast 鈹€鈹€ */
+        /* ── Toast ── */
         .toast { position: fixed; top: 24px; left: 50%; transform: translateX(-50%);
             background: var(--text); color: #fff; padding: 10px 22px; border-radius: 20px;
             font-size: 13px; font-weight: 500; z-index: 999; opacity: 0; transition: opacity .2s;
             pointer-events: none; }
         .toast.show { opacity: 1; }
 
-        /* 鈹€鈹€ Login 鈹€鈹€ */
+        /* ── Login ── */
         .login-wrap {
             display: flex; flex-direction: column; justify-content: center;
             min-height: 100vh; padding: 40px 20px; text-align: center;
@@ -80,13 +80,13 @@
         }
         .login-wrap input:focus { border-color: var(--text); background: var(--bg); }
 
-        /* 鈹€鈹€ Header 鈹€鈹€ */
+        /* ── Header ── */
         .header { padding: 36px 0 24px; font-size: 28px; font-weight: 700; letter-spacing: -.5px; }
         .header-back { font-size: 16px; font-weight: 500; color: var(--text); cursor: pointer;
             padding: 20px 0 16px; display: flex; align-items: center; gap: 4px; }
-        .header-back::before { content: '鈫?; font-size: 18px; }
+        .header-back::before { content: '\2190'; font-size: 18px; }
 
-        /* 鈹€鈹€ Goal options 鈹€鈹€ */
+        /* ── Goal options ── */
         .goal-option {
             display: flex; align-items: center; padding: 18px; border: 1px solid var(--border);
             border-radius: var(--radius); margin: 8px 0; cursor: pointer; background: var(--bg);
@@ -101,7 +101,7 @@
         .goal-option .title { font-weight: 600; font-size: 16px; }
         .goal-option .desc { font-size: 13px; color: var(--text-secondary); margin-top: 2px; }
 
-        /* 鈹€鈹€ Tags 鈹€鈹€ */
+        /* ── Tags ── */
         .tag {
             display: inline-block; padding: 7px 16px; border-radius: 20px; margin: 3px; font-size: 13px;
             cursor: pointer; border: 1px solid var(--border); color: var(--text-secondary);
@@ -109,7 +109,7 @@
         }
         .tag.selected { background: var(--text); color: #fff; border-color: var(--text); }
 
-        /* 鈹€鈹€ Home 鈹€鈹€ */
+        /* ── Home ── */
         .day-picker { display: flex; gap: 6px; overflow-x: auto; padding: 4px 0 14px;
             scrollbar-width: none; }
         .day-picker::-webkit-scrollbar { display: none; }
@@ -137,7 +137,7 @@
         .meal-card .meta { margin-top: 8px; font-size: 12px; color: var(--text-tertiary); }
         .meal-card .actions { margin-top: 10px; display: flex; gap: 6px; }
 
-        /* 鈹€鈹€ Bottom Nav 鈹€鈹€ */
+        /* ── Bottom Nav ── */
         .bottom-nav {
             position: fixed; bottom: 0; left: 50%; transform: translateX(-50%);
             width: 100%; max-width: 500px; display: flex; background: rgba(255,255,255,.92);
@@ -151,7 +151,7 @@
         .nav-item.active { color: var(--text); }
         .nav-item .icon { font-size: 20px; display: block; margin-bottom: 2px; line-height: 1; }
 
-        /* 鈹€鈹€ Loading 鈹€鈹€ */
+        /* ── Loading ── */
         .loading-wrap { text-align: center; padding: 80px 20px; }
         .spinner { display: inline-block; width: 28px; height: 28px; border: 2.5px solid var(--border);
             border-top-color: var(--text); border-radius: 50%; animation: spin .6s linear infinite; }
@@ -167,22 +167,22 @@
         }
         .loading-text { margin-top: 16px; color: var(--text-secondary); font-size: 14px; }
 
-        /* 鈹€鈹€ Warning 鈹€鈹€ */
+        /* ── Warning ── */
         .warning-box { background: #f5f5f7; border-radius: 10px; padding: 14px 16px; margin: 14px 0;
             font-size: 12px; color: var(--text-secondary); border: 1px solid var(--border); }
 
-        /* 鈹€鈹€ Empty state 鈹€鈹€ */
+        /* ── Empty state ── */
         .empty-state { text-align: center; padding: 48px 20px; }
         .empty-state p { font-size: 15px; color: var(--text-secondary); margin-bottom: 20px; }
 
-        /* 鈹€鈹€ Expired banner 鈹€鈹€ */
+        /* ── Expired banner ── */
         .expired-banner { background: var(--text); color: #fff; border-radius: 10px; padding: 14px 16px;
             margin: 12px 0; font-size: 13px; font-weight: 500; display: flex;
             align-items: center; justify-content: space-between; }
         .expired-banner .btn-inline { background: #fff; color: var(--text); border: none;
             padding: 7px 16px; border-radius: 8px; font-size: 12px; font-weight: 600; cursor: pointer; }
 
-        /* 鈹€鈹€ Swap 鈹€鈹€ */
+        /* ── Swap ── */
         #page-swap { position: fixed; top: 0; left: 0; right: 0; bottom: 0;
             background: rgba(0,0,0,.35); z-index: 100; display: none; align-items: flex-end; }
         #page-swap.open { display: flex; }
@@ -191,17 +191,17 @@
         .swap-sheet h3 { font-size: 18px; font-weight: 700; margin-bottom: 4px; }
         .swap-sheet .swap-sub { font-size: 13px; color: var(--text-secondary); margin-bottom: 16px; }
 
-        /* 鈹€鈹€ Health 鈹€鈹€ */
+        /* ── Health ── */
         .record-row { display: flex; justify-content: space-between; padding: 10px 0;
             border-bottom: 1px solid var(--border); font-size: 13px; align-items: center; }
         .record-row span { color: var(--text-secondary); }
 
-        /* 鈹€鈹€ Shopping 鈹€鈹€ */
+        /* ── Shopping ── */
         .shop-row { display: flex; justify-content: space-between; padding: 10px 0;
             border-bottom: 1px solid var(--border); font-size: 14px; }
         .shop-row .qty { font-weight: 600; }
 
-        /* 鈹€鈹€ Order / Enhanced Shopping 鈹€鈹€ */
+        /* ── Order / Enhanced Shopping ── */
         .shop-order-row { display: flex; align-items: center; gap: 8px; padding: 10px 0;
             border-bottom: 1px solid var(--border); font-size: 14px; }
         .shop-order-row.unchecked { opacity: 0.4; }
@@ -234,7 +234,7 @@
         .add-item-row input:focus { border-color: var(--text); }
         .custom-item .remove-btn { color: #d32f2f; cursor: pointer; font-size: 16px; flex-shrink: 0; }
 
-        /* 鈹€鈹€ Order Lock 鈹€鈹€ */
+        /* ── Order Lock ── */
         .shop-order-row.locked { opacity: 0.55; background: var(--card); border-radius: 6px; }
         .shop-order-row.locked .shop-checkbox { pointer-events: none; }
         .lock-badge { display: inline-block; background: #fff3cd; color: #856404; padding: 2px 8px;
@@ -242,7 +242,7 @@
         .lock-banner { background: #fff3cd; border: 1px solid #ffc107; border-radius: 10px; padding: 10px 14px;
             margin: 10px 0; font-size: 12px; color: #856404; display: flex; align-items: center; gap: 8px; }
 
-        /* 鈹€鈹€ Delivery 鈹€鈹€ */
+        /* ── Delivery ── */
         .delivery-status {
             display: inline-block; padding: 3px 10px; border-radius: 12px;
             font-size: 11px; font-weight: 600; letter-spacing: .2px; flex-shrink: 0;
@@ -262,7 +262,7 @@
             padding: 4px 10px; border-radius: 10px; font-size: 11px; font-weight: 600; background: var(--card);
         }
 
-        /* 鈹€鈹€ Mine 鈹€鈹€ */
+        /* ── Mine ── */
         .mine-row { display: flex; justify-content: space-between; padding: 12px 0;
             border-bottom: 1px solid var(--border); font-size: 15px; }
         .mine-row .label { color: var(--text-secondary); }
@@ -278,58 +278,58 @@
 <!-- Login -->
 <div class="page active" id="page-login">
     <div class="login-wrap">
-        <h1>楗鍋ュ悍</h1>
-        <p class="sub">AI 钀ュ吇甯堬紝绉戝瀹氬埗浣犵殑楗鏂规</p>
-        <input type="text" id="login-name" placeholder="杈撳叆浣犵殑鏄电О" maxlength="20" autocomplete="off">
-        <button class="btn" onclick="handleLogin()">寮€濮嬩娇鐢?/button>
+        <h1>饮食健康</h1>
+        <p class="sub">AI 营养师，科学定制你的饮食方案</p>
+        <input type="text" id="login-name" placeholder="输入你的昵称" maxlength="20" autocomplete="off">
+        <button class="btn" onclick="handleLogin()">开始使用</button>
     </div>
 </div>
 
 <!-- Loading -->
 <div class="page" id="page-loading">
-    <div class="loading-wrap"><div class="spinner"></div><p class="loading-text" id="loading-msg">鍔犺浇涓?..</p></div>
+    <div class="loading-wrap"><div class="spinner"></div><p class="loading-text" id="loading-msg">加载中...</p></div>
 </div>
 
 <!-- Goal -->
 <div class="page" id="page-goal">
-    <div class="header">浣犵殑鐩爣<br>鏄粈涔堬紵</div>
+    <div class="header">你的目标<br>是什么？</div>
     <div class="goal-option" onclick="selectGoal('fat_loss')">
-        <div class="idx">1</div><div><div class="title">鍑忚剛</div><div class="desc">鎺у埗鐑噺鎽勫叆锛岄檷浣庝綋鑴?/div></div>
+        <div class="idx">1</div><div><div class="title">减脂</div><div class="desc">控制热量摄入，降低体脂?/div></div>
     </div>
     <div class="goal-option" onclick="selectGoal('muscle_gain')">
-        <div class="idx">2</div><div><div class="title">澧炶倢</div><div class="desc">澧炲姞鑲岃倝閲忥紝楂樿泲鐧介ギ椋?/div></div>
+        <div class="idx">2</div><div><div class="title">增肌</div><div class="desc">增加肌肉量，高蛋白饮食?/div></div>
     </div>
     <div class="goal-option" onclick="selectGoal('shaping')">
-        <div class="idx">3</div><div><div class="title">濉戝舰</div><div class="desc">淇濇寔浣撻噸锛屼紭鍖栦綋鎬?/div></div>
+        <div class="idx">3</div><div><div class="title">塑形</div><div class="desc">保持体重，优化体型?/div></div>
     </div>
     <div class="goal-option" onclick="selectGoal('healthy')">
-        <div class="idx">4</div><div><div class="title">鍋ュ悍楗</div><div class="desc">鍧囪　钀ュ吇锛屼繚鎸佸仴搴?/div></div>
+        <div class="idx">4</div><div><div class="title">健康饮食</div><div class="desc">均衡营养，保持健康?/div></div>
     </div>
-    <button class="btn" onclick="nextToProfile()" style="margin-top:20px;">涓嬩竴姝?/button>
+    <button class="btn" onclick="nextToProfile()" style="margin-top:20px;">下一步?/button>
 </div>
 
 <!-- Profile -->
 <div class="page" id="page-profile">
-    <div class="header">韬綋鏁版嵁</div>
+    <div class="header">身体数据</div>
     <div class="card">
-        <div class="input-group"><label>鎬у埆</label><select id="inp-gender"><option value="male">鐢?/option><option value="female">濂?/option></select></div>
-        <div class="input-group"><label>骞撮緞</label><input type="number" id="inp-age" value="25" min="10" max="80"></div>
-        <div class="input-group"><label>韬珮 cm</label><input type="number" id="inp-height" value="170" min="100" max="220" step="0.1"></div>
-        <div class="input-group"><label>浣撻噸 kg</label><input type="number" id="inp-weight" value="70" min="30" max="200" step="0.1"></div>
-        <div class="input-group"><label>浣撹剛鐜?%</label><input type="number" id="inp-bodyfat" value="20" min="5" max="50" step="0.1"></div>
-        <div class="input-group"><label>鐑归オ姘村钩</label><select id="inp-cooking"><option value="low">鍒濈骇</option><option value="medium" selected>涓骇</option><option value="high">楂樼骇</option></select></div>
+        <div class="input-group"><label>性别</label><select id="inp-gender"><option value="male">?/option><option value="female">?/option></select></div>
+        <div class="input-group"><label>年龄</label><input type="number" id="inp-age" value="25" min="10" max="80"></div>
+        <div class="input-group"><label>身高 cm</label><input type="number" id="inp-height" value="170" min="100" max="220" step="0.1"></div>
+        <div class="input-group"><label>体重 kg</label><input type="number" id="inp-weight" value="70" min="30" max="200" step="0.1"></div>
+        <div class="input-group"><label>体脂率?%</label><input type="number" id="inp-bodyfat" value="20" min="5" max="50" step="0.1"></div>
+        <div class="input-group"><label>烹饪水平</label><select id="inp-cooking"><option value="low">初级</option><option value="medium" selected>中级</option><option value="high">高级</option></select></div>
     </div>
-    <button class="btn" onclick="nextToPreferences()" style="margin-top:12px;">涓嬩竴姝ワ細楗鍋忓ソ</button>
+    <button class="btn" onclick="nextToPreferences()" style="margin-top:12px;">下一步：饮食偏好</button>
 </div>
 
 <!-- Questionnaire -->
 <div class="page" id="page-questionnaire">
-    <div class="header">楗闂嵎</div>
+    <div class="header">饮食问卷</div>
     <div class="step-dots" id="q-steps" style="display:flex;gap:6px;justify-content:center;margin-bottom:20px;"></div>
     <div id="q-content"></div>
     <div style="display:flex;gap:10px;margin-top:16px;" id="q-nav">
-        <button class="btn btn-secondary" onclick="prevQStep()" id="q-prev" style="display:none;">涓婁竴姝?/button>
-        <button class="btn" onclick="nextQStep()" id="q-next">涓嬩竴姝?/button>
+        <button class="btn btn-secondary" onclick="prevQStep()" id="q-prev" style="display:none;">上一步?/button>
+        <button class="btn" onclick="nextQStep()" id="q-next">下一步?/button>
     </div>
 </div>
 
@@ -338,7 +338,7 @@
 
 <!-- Home -->
 <div class="page" id="page-home">
-    <div class="header">浠婃棩楗</div>
+    <div class="header">今日饮食</div>
     <div id="home-status"></div>
     <div class="day-picker" id="day-picker"></div>
     <div id="home-nutrients"></div>
@@ -348,42 +348,42 @@
 
 <!-- Meal Detail -->
 <div class="page" id="page-detail">
-    <div class="header-back" onclick="navigateTo('home')">杩斿洖</div>
+    <div class="header-back" onclick="navigateTo('home')">返回</div>
     <div id="detail-content"></div>
 </div>
 
 <!-- Health -->
 <div class="page" id="page-health">
-    <div class="header">鍋ュ悍璁板綍</div>
+    <div class="header">健康记录</div>
     <div class="card">
-        <div class="section-title">璁板綍浠婃棩鏁版嵁</div>
-        <div class="input-group"><label>浣撻噸 kg</label><input type="number" id="hr-weight" step="0.1" placeholder="鍙€?></div>
-        <div class="input-group"><label>浠婃棩鎽勫叆 kcal</label><input type="number" id="hr-calories" value="0"></div>
-        <div class="input-group"><label>楗鎵ц鐜?%</label><input type="number" id="hr-compliance" value="80" min="0" max="100"></div>
-        <div class="input-group"><label>蹇冩儏</label><select id="hr-mood"><option value="great">寰堝ソ</option><option value="ok">涓€鑸?/option><option value="bad">涓嶅ソ</option></select></div>
+        <div class="section-title">记录今日数据</div>
+        <div class="input-group"><label>体重 kg</label><input type="number" id="hr-weight" step="0.1" placeholder="可选?></div>
+        <div class="input-group"><label>今日摄入 kcal</label><input type="number" id="hr-calories" value="0"></div>
+        <div class="input-group"><label>饮食执行率?%</label><input type="number" id="hr-compliance" value="80" min="0" max="100"></div>
+        <div class="input-group"><label>心情</label><select id="hr-mood"><option value="great">很好</option><option value="ok">一般?/option><option value="bad">不好</option></select></div>
         <div class="input-group" style="display:flex;align-items:center;gap:10px;">
             <input type="checkbox" id="hr-plan-followed" style="width:18px;height:18px;accent-color:var(--text);">
-            <label style="margin-bottom:0;cursor:pointer;" for="hr-plan-followed">浠婃棩鎸夎鍒掗ギ椋?/label>
+            <label style="margin-bottom:0;cursor:pointer;" for="hr-plan-followed">今日按计划饮食?/label>
         </div>
-        <button class="btn" onclick="saveHealthRecord()" style="margin-top:8px;">淇濆瓨璁板綍</button>
+        <button class="btn" onclick="saveHealthRecord()" style="margin-top:8px;">保存记录</button>
     </div>
     <div class="card">
-        <div class="section-title">鍘嗗彶璁板綍</div>
+        <div class="section-title">历史记录</div>
         <div id="health-history"></div>
     </div>
-    <button class="btn btn-secondary" onclick="generateMonthlyReport()" style="margin-top:8px;">鐢熸垚鏈堝害鎶ュ憡</button>
+    <button class="btn btn-secondary" onclick="generateMonthlyReport()" style="margin-top:8px;">生成月度报告</button>
     <div id="monthly-report"></div>
 </div>
 
 <!-- Shopping -->
 <div class="page" id="page-shopping">
-    <div class="header-back" onclick="navigateTo('home')">杩斿洖</div>
+    <div class="header-back" onclick="navigateTo('home')">返回</div>
     <div style="display:flex;gap:6px;margin:8px 0 8px;flex-wrap:wrap;">
-        <button class="btn btn-sm" onclick="loadShoppingList('3day')">3 澶?/button>
-        <button class="btn btn-sm btn-secondary" onclick="loadShoppingList('7day')">7 澶?/button>
-        <button class="btn btn-sm btn-secondary" onclick="loadShoppingList('30day')">30 澶?/button>
-        <button class="btn btn-sm" id="btn-group-flat" onclick="setShoppingMode('flat')">姹囨€?/button>
-        <button class="btn btn-sm btn-secondary" id="btn-group-daily" onclick="setShoppingMode('daily')">鎸夋棩閰嶉€?/button>
+        <button class="btn btn-sm" onclick="loadShoppingList('3day')">3 天?/button>
+        <button class="btn btn-sm btn-secondary" onclick="loadShoppingList('7day')">7 天?/button>
+        <button class="btn btn-sm btn-secondary" onclick="loadShoppingList('30day')">30 天?/button>
+        <button class="btn btn-sm" id="btn-group-flat" onclick="setShoppingMode('flat')">汇总?/button>
+        <button class="btn btn-sm btn-secondary" id="btn-group-daily" onclick="setShoppingMode('daily')">按日配送?/button>
     </div>
     <div id="shopping-items"></div>
     <div id="order-summary"></div>
@@ -391,58 +391,58 @@
 
 <!-- Mine -->
 <div class="page" id="page-mine">
-    <div class="header">鎴?/div>
+    <div class="header">?/div>
     <div class="card">
-        <div class="section-title">涓汉淇℃伅</div>
-        <div class="mine-row"><span class="label">鏄电О</span><span id="mine-nickname">--</span></div>
-        <div class="mine-row"><span class="label">鐩爣</span><span id="mine-goal">--</span></div>
-        <div class="mine-row"><span class="label">骞撮緞</span><span id="mine-age">--</span></div>
-        <div class="mine-row"><span class="label">韬珮</span><span id="mine-height">--</span></div>
-        <div class="mine-row"><span class="label">浣撻噸</span><span id="mine-weight">--</span></div>
+        <div class="section-title">个人信息</div>
+        <div class="mine-row"><span class="label">昵称</span><span id="mine-nickname">--</span></div>
+        <div class="mine-row"><span class="label">目标</span><span id="mine-goal">--</span></div>
+        <div class="mine-row"><span class="label">年龄</span><span id="mine-age">--</span></div>
+        <div class="mine-row"><span class="label">身高</span><span id="mine-height">--</span></div>
+        <div class="mine-row"><span class="label">体重</span><span id="mine-weight">--</span></div>
     </div>
     <div class="card" style="margin-top:16px;">
-        <div class="section-title">閰嶉€佸湴鍧€</div>
-        <div class="input-group"><input type="text" id="mine-address" placeholder="杈撳叆鍦板潃" onchange="updateAddress()"></div>
-        <button class="btn btn-sm btn-secondary" onclick="getGeoLocation()" style="margin-top:4px;">鑷姩瀹氫綅</button>
+        <div class="section-title">配送地址</div>
+        <div class="input-group"><input type="text" id="mine-address" placeholder="输入地址" onchange="updateAddress()"></div>
+        <button class="btn btn-sm btn-secondary" onclick="getGeoLocation()" style="margin-top:4px;">自动定位</button>
         <p style="font-size:11px;color:var(--text-tertiary);margin-top:6px;" id="mine-coords"></p>
     </div>
     <div class="card" style="margin-top:16px;" id="admin-link-card">
-        <button class="btn btn-secondary" onclick="window.location.href='/admin'">绠＄悊鍚庡彴</button>
+        <button class="btn btn-secondary" onclick="window.location.href='/admin'">管理后台</button>
     </div>
     <div class="card" style="margin-top:16px;">
-        <button class="btn btn-secondary" onclick="retakeQuestionnaire()">閲嶆柊濉啓闂嵎</button>
-        <p style="font-size:11px;color:var(--text-tertiary);margin-top:4px;">淇敼楗鍋忓ソ鍚庨渶閲嶆柊鐢熸垚鏂规</p>
+        <button class="btn btn-secondary" onclick="retakeQuestionnaire()">重新填写问卷</button>
+        <p style="font-size:11px;color:var(--text-tertiary);margin-top:4px;">修改饮食偏好后需重新生成方案</p>
     </div>
     <div class="card" style="margin-top:16px;">
-        <div class="section-title">鍏嶈矗澹版槑</div>
-        <p style="font-size:12px;color:var(--text-secondary);line-height:1.8;">AI 楗鏂规浠呬緵鍙傝€冿紝涓嶆瀯鎴愬尰鐤楀缓璁€傚鏈夌壒娈婂仴搴风姸鍐碉紝璇峰挩璇笓涓氬尰鐢熴€?/p>
+        <div class="section-title">免责声明</div>
+        <p style="font-size:12px;color:var(--text-secondary);line-height:1.8;">AI AI 饮食方案仅供参考，不构成医疗建议。如有特殊健康状况，请咨询专业医生。?/p>
     </div>
-    <button class="btn btn-text" onclick="handleLogout()" style="margin-top:16px;width:100%;color:#d32f2f;">閫€鍑虹櫥褰?/button>
+    <button class="btn btn-text" onclick="handleLogout()" style="margin-top:16px;width:100%;color:#d32f2f;">退出登录?/button>
 </div>
 
 <!-- Swap -->
 <div id="page-swap">
     <div class="swap-sheet">
-        <h3>椋熸潗鏇挎崲</h3>
+        <h3>食材替换</h3>
         <p class="swap-sub" id="swap-meal-info"></p>
         <div id="swap-ingredients-list" style="margin-bottom:12px;"></div>
         <div id="swap-alternatives"></div>
         <div class="warning-box" style="display:none;" id="swap-warning-box">
-            鏇挎崲鍚庤惀鍏荤粨鏋勫彲鑳藉彂鐢熷彉鍖栵紝鏈柟妗堜粎渚涘弬鑰冦€?        </div>
-        <button class="btn btn-secondary" onclick="closeSwap()" style="margin-top:12px;">鍏抽棴</button>
+            替换后营养结构可能发生变化，本方案仅供参考。?        </div>
+        <button class="btn btn-secondary" onclick="closeSwap()" style="margin-top:12px;">关闭</button>
     </div>
 </div>
 
 <!-- Bottom Nav -->
 <div class="bottom-nav" id="bottom-nav" style="display:none;">
-    <div class="nav-item active" onclick="navigateTo('home')"><span class="icon">鈹?/span>浠婃棩楗</div>
-    <div class="nav-item" onclick="navigateTo('health')"><span class="icon">鈼?/span>鍋ュ悍璁板綍</div>
-    <div class="nav-item" onclick="navigateTo('shopping')"><span class="icon">鈻?/span>閲囪喘娓呭崟</div>
-    <div class="nav-item" onclick="navigateTo('mine')"><span class="icon">鈼?/span>鎴?/div>
+    <div class="nav-item active" onclick="navigateTo('home')"><span class="icon">?/span>今日饮食</div>
+    <div class="nav-item" onclick="navigateTo('health')"><span class="icon">?/span>健康记录</div>
+    <div class="nav-item" onclick="navigateTo('shopping')"><span class="icon">?/span>采购清单</div>
+    <div class="nav-item" onclick="navigateTo('mine')"><span class="icon">?/span>?/div>
 </div>
 
 <script>
-// 鈹€鈹€ State 鈹€鈹€
+// ── State ──
 const API = 'http://localhost:8000/api/v1';
 let token = localStorage.getItem('token') || '';
 let currentUser = null;
@@ -475,14 +475,14 @@ let qData = {
     additional_notes: '',
 };
 let aiProfileSummary = '';
-const ingredientNames = ['楦¤兏鑲?,'楦¤吙鑲?,'楦¤泲','鐗涜倝锛堢槮锛?,'鐚噷鑴?,'涓夋枃楸?,'铏句粊','璞嗚厫','绫抽キ','鍏ㄩ害闈㈠寘','绾㈣柉','鐕曢害鐗?,'鎰忛潰','鐜夌背','瑗垮叞鑺?,'鑿犺彍','鐣寗','榛勭摐','鑳¤悵鍗?,'鐢熻彍','闈掓','铇戣弴','鐗涘ザ','閰稿ザ','姗勬娌?,'鍧氭灉','棣欒晧','鑻规灉','钃濊帗'];
-const cuisineOptions = ['涓','瑗块','鏃ユ枡','闊╅','涓滃崡浜?,'鍦颁腑娴?,'涓嶉檺'];
-const flavorOptions = ['杈?,'娓呮贰','鍜搁','鐢?,'閰?,'涓嶉檺'];
-const equipmentOptions = ['鐕冩皵鐏?,'寰尝鐐?,'绌烘皵鐐搁攨','鐢甸キ鐓?,'鐑ょ','钂搁攨'];
-const restrictionOptions = ['涓嶅悆鐚倝','绱犻','娓呯湡','鏃犻焊璐?,'浣庣⒊姘?,'浣庤剛'];
-const healthConditionOptions = ['绯栧翱鐥?,'楂樿鍘?,'楂樿鑴?,'鐥涢','涔崇硸涓嶈€?,'鑳冪梾','鏃?];
+const ingredientNames = ['鸡胸肉?,'鸡腿肉?,'鸡蛋','牛肉（瘦肉）?,'猪里脊?,'三文鱼?,'虾仁','豆腐','米饭','全麦面包','红薯','燕麦片?,'意面','玉米','西兰花?,'菠菜','番茄','黄瓜','胡萝卜?,'生菜','青椒','蘑菇','牛奶','酸奶','橄榄油?,'坚果','香蕉','苹果','蓝莓'];
+const cuisineOptions = ['中餐','西餐','日料','韩餐','东南亚?,'地中海?,'不限'];
+const flavorOptions = ['?,'清淡','咸香','?,'?,'不限'];
+const equipmentOptions = ['燃气灶?,'微波炉?,'空气炸锅','电饭煲?,'烤箱','蒸锅'];
+const restrictionOptions = ['不吃猪肉','素食','清真','无麸质?,'低碳水?,'低脂'];
+const healthConditionOptions = ['糖尿病?,'高血压?,'高血压?,'痛风','乳糖不耐受?,'胃病','?];
 
-// 鈹€鈹€ Helpers 鈹€鈹€
+// ── Helpers ──
 function toast(msg) { const t = document.getElementById('toast'); t.textContent = msg; t.classList.add('show'); setTimeout(() => t.classList.remove('show'), 2000); }
 function showPage(id) { document.querySelectorAll('.page').forEach(p => p.classList.remove('active')); document.getElementById('page-'+id).classList.add('active'); }
 function today() { return new Date().toISOString().split('T')[0]; }
@@ -493,7 +493,7 @@ async function api(method, path, body = null) {
     const opts = { method, headers };
     if (body) opts.body = JSON.stringify(body);
     const res = await fetch(`${API}${path}`, opts);
-    if (!res.ok) { const err = await res.json().catch(() => ({detail:'璇锋眰澶辫触'})); throw new Error(err.detail || '璇锋眰澶辫触'); }
+    if (!res.ok) { const err = await res.json().catch(() => ({detail:'请求失败'})); throw new Error(err.detail || '请求失败'); }
     return res.json();
 }
 
@@ -508,10 +508,10 @@ function navigateTo(page) {
     if (page === 'mine') renderMine();
 }
 
-// 鈹€鈹€ Login 鈹€鈹€
+// ── Login ──
 async function handleLogin() {
     const name = document.getElementById('login-name').value.trim();
-    if (!name) { toast('璇疯緭鍏ユ樀绉?); return; }
+    if (!name) { toast('请输入昵称?); return; }
     const openid = name === 'admin' ? 'test_user_001' : 'user_' + name;
     try {
         showPage('loading');
@@ -531,11 +531,11 @@ async function handleLogin() {
                 navigateTo('goal');
             }
         }
-    } catch(e) { toast('鐧诲綍澶辫触: ' + e.message); showPage('login'); }
+    } catch(e) { toast('登录失败: ' + e.message); showPage('login'); }
 }
 
 function handleLogout() {
-    if (!confirm('纭閫€鍑虹櫥褰曪紵')) return;
+    if (!confirm('确认退出登录？')) return;
     token = '';
     currentUser = null;
     currentPlan = null;
@@ -544,7 +544,7 @@ function handleLogout() {
     showPage('login');
 }
 
-// 鈹€鈹€ Goal & Profile 鈹€鈹€
+// ── Goal & Profile ──
 function selectGoal(goal) {
     selectedGoal = goal;
     document.querySelectorAll('.goal-option').forEach(o => o.classList.remove('selected'));
@@ -552,7 +552,7 @@ function selectGoal(goal) {
 }
 
 async function nextToProfile() {
-    if (!selectedGoal) { toast('璇峰厛閫夋嫨鐩爣'); return; }
+    if (!selectedGoal) { toast('请先选择目标'); return; }
     navigateTo('profile');
 }
 
@@ -569,10 +569,10 @@ async function nextToPreferences() {
         currentQStep = 1;
         navigateTo('questionnaire');
         renderQStep();
-    } catch(e) { toast('淇濆瓨澶辫触: ' + e.message); }
+    } catch(e) { toast('保存失败: ' + e.message); }
 }
 
-// 鈹€鈹€ Questionnaire 鈹€鈹€
+// ── Questionnaire ──
 function renderQStep() {
     const dots = document.getElementById('q-steps');
     dots.innerHTML = Array.from({length: totalQSteps}, (_, i) =>
@@ -582,58 +582,58 @@ function renderQStep() {
     const prev = document.getElementById('q-prev');
     const next = document.getElementById('q-next');
     prev.style.display = currentQStep > 1 ? '' : 'none';
-    next.textContent = currentQStep === totalQSteps ? '鎻愪氦闂嵎' : '涓嬩竴姝?;
+    next.textContent = currentQStep === totalQSteps ? '提交问卷' : '下一步?;
     next.onclick = currentQStep === totalQSteps ? submitQuestionnaire : nextQStep;
 
     const content = document.getElementById('q-content');
     switch (currentQStep) {
     case 1: // Cuisine & Flavor
         content.innerHTML = `
-            <div class="card"><div class="section-title">鍠滄鐨勮彍绯?/div>
+            <div class="card"><div class="section-title">喜欢的菜系?/div>
                 ${cuisineOptions.map(c => `<span class="tag ${qData.cuisine_preferences.includes(c)?'selected':''}" onclick="toggleQMulti('cuisine_preferences','${c}')">${c}</span>`).join('')}
             </div>
-            <div class="card"><div class="section-title">鍙ｅ懗鍋忓ソ</div>
+            <div class="card"><div class="section-title">口味偏好</div>
                 ${flavorOptions.map(f => `<span class="tag ${qData.flavor_preferences.includes(f)?'selected':''}" onclick="toggleQMulti('flavor_preferences','${f}')">${f}</span>`).join('')}
             </div>`;
         break;
     case 2: // Meal Habits
         content.innerHTML = `
             <div class="card">
-                <div class="input-group"><label>姣忔棩椁愭</label><select onchange="qData.meals_per_day=parseInt(this.value)" id="q-meals"><option value="2" ${qData.meals_per_day===2?'selected':''}>2 椁?/option><option value="3" ${qData.meals_per_day===3?'selected':''}>3 椁?/option><option value="4" ${qData.meals_per_day===4?'selected':''}>4 椁?/option><option value="5" ${qData.meals_per_day===5?'selected':''}>5+ 椁?/option></select></div>
-                <div class="input-group"><label>闆堕涔犳儻</label><select onchange="qData.snack_habit=this.value" id="q-snack"><option value="">--</option><option value="涓嶅悆" ${qData.snack_habit==='涓嶅悆'?'selected':''}>涓嶅悆闆堕</option><option value="鍋跺皵" ${qData.snack_habit==='鍋跺皵'?'selected':''}>鍋跺皵</option><option value="缁忓父" ${qData.snack_habit==='缁忓父'?'selected':''}>缁忓父</option></select></div>
-                <div class="input-group"><label>鏈€闀跨児楗椂闂达紙鍒嗛挓锛?/label><input type="range" min="5" max="60" value="${qData.max_cooking_time_min}" oninput="qData.max_cooking_time_min=parseInt(this.value);document.getElementById('cook-time-val').textContent=this.value+'鍒嗛挓'" style="width:100%;"><span id="cook-time-val" style="font-size:14px;font-weight:600;">${qData.max_cooking_time_min}鍒嗛挓</span></div>
+                <div class="input-group"><label>每日餐次</label><select onchange="qData.meals_per_day=parseInt(this.value)" id="q-meals"><option value="2" ${qData.meals_per_day===2?'selected':''}>2 ?/option><option value="3" ${qData.meals_per_day===3?'selected':''}>3 天?/option><option value="4" ${qData.meals_per_day===4?'selected':''}>4 ?/option><option value="5" ${qData.meals_per_day===5?'selected':''}>5+ ?/option></select></div>
+                <div class="input-group"><label>零食习惯</label><select onchange="qData.snack_habit=this.value" id="q-snack"><option value="">--</option><option value="不吃" ${qData.snack_habit==='不吃'?'selected':''}>不吃零食</option><option value="偶尔" ${qData.snack_habit==='偶尔'?'selected':''}>偶尔</option><option value="经常" ${qData.snack_habit==='经常'?'selected':''}>经常</option></select></div>
+                <div class="input-group"><label>最长烹饪时间（分钟）?/label><input type="range" min="5" max="60" value="${qData.max_cooking_time_min}" oninput="qData.max_cooking_time_min=parseInt(this.value);document.getElementById('cook-time-val').textContent=this.value+'分钟'" style="width:100%;"><span id="cook-time-val" style="font-size:14px;font-weight:600;">${qData.max_cooking_time_min}分钟</span></div>
             </div>
-            <div class="card"><div class="section-title">鍙敤鍘ㄥ叿</div>
+            <div class="card"><div class="section-title">可用厨具</div>
                 ${equipmentOptions.map(e => `<span class="tag ${qData.cooking_equipment.includes(e)?'selected':''}" onclick="toggleQMulti('cooking_equipment','${e}')">${e}</span>`).join('')}
             </div>`;
         break;
     case 3: // Allergies & Restrictions
         content.innerHTML = `
-            <div class="card"><div class="section-title">楗闄愬埗</div>
+            <div class="card"><div class="section-title">饮食限制</div>
                 ${restrictionOptions.map(r => `<span class="tag ${qData.dietary_restrictions.includes(r)?'selected':''}" onclick="toggleQMulti('dietary_restrictions','${r}')">${r}</span>`).join('')}
             </div>
-            <div class="card"><div class="section-title">鍋ュ悍鐘跺喌</div>
+            <div class="card"><div class="section-title">健康状况</div>
                 ${healthConditionOptions.map(h => `<span class="tag ${qData.health_conditions.includes(h)?'selected':''}" onclick="toggleQMulti('health_conditions','${h}')">${h}</span>`).join('')}
             </div>
             <div class="card">
-                <div class="section-title">椋熺墿杩囨晱</div>
+                <div class="section-title">食物过敏</div>
                 <div id="allergy-list">${renderAllergyList()}</div>
-                <button class="btn btn-sm btn-secondary" onclick="addAllergy()" style="margin-top:8px;">+ 娣诲姞杩囨晱</button>
+                <button class="btn btn-sm btn-secondary" onclick="addAllergy()" style="margin-top:8px;">+ 添加过敏</button>
             </div>`;
         break;
     case 4: // Goals & Timeline
         content.innerHTML = `
             <div class="card">
-                <div class="input-group"><label>鍑忛噸/澧炶倢鐩爣璇︽儏</label><input type="text" id="q-goal-detail" value="${escHtml(qData.weight_goal_detail)}" placeholder="濡傦細鎯冲噺鎺夎吂閮ㄨ剛鑲紝澧炲姞涓婅偄鍔涢噺" onchange="qData.weight_goal_detail=this.value"></div>
-                <div class="input-group"><label>棰勬湡鏃堕棿绾?/label><input type="text" id="q-timeline" value="${escHtml(qData.goal_timeline)}" placeholder="濡傦細3涓湀鍑?kg" onchange="qData.goal_timeline=this.value"></div>
-                <div class="input-group"><label>琛ュ厖璇存槑</label><input type="text" id="q-notes" value="${escHtml(qData.additional_notes)}" placeholder="鍏朵粬鎯冲憡璇夎惀鍏诲笀鐨勪俊鎭? onchange="qData.additional_notes=this.value"></div>
+                <div class="input-group"><label>减重/增肌目标详情</label><input type="text" id="q-goal-detail" value="${escHtml(qData.weight_goal_detail)}" placeholder="如：想减掉腹部脂肪，增加上肢力量" onchange="qData.weight_goal_detail=this.value"></div>
+                <div class="input-group"><label>预期时间?/label><input type="text" id="q-timeline" value="${escHtml(qData.goal_timeline)}" placeholder="如：3个月减5kg?kg" onchange="qData.goal_timeline=this.value"></div>
+                <div class="input-group"><label>补充说明</label><input type="text" id="q-notes" value="${escHtml(qData.additional_notes)}" placeholder="其他想告诉营养师的信息? onchange="qData.additional_notes=this.value"></div>
             </div>`;
         break;
     case 5: // Ingredient preferences + submit
         content.innerHTML = `
-            <div class="card"><div class="section-title">鍠滄鐨勯鏉?/div><div id="tags-like"></div></div>
-            <div class="card"><div class="section-title">涓嶅枩娆㈢殑椋熸潗</div><div id="tags-dislike"></div></div>
-            <div class="card"><div class="section-title">杩囨晱椋熸潗</div><div id="tags-allergy"></div></div>`;
+            <div class="card"><div class="section-title">喜欢的食物?/div><div id="tags-like"></div></div>
+            <div class="card"><div class="section-title">不喜欢的食材</div><div id="tags-dislike"></div></div>
+            <div class="card"><div class="section-title">过敏食材</div><div id="tags-allergy"></div></div>`;
         renderPreferenceTags();
         break;
     }
@@ -642,13 +642,13 @@ function renderQStep() {
 function renderAllergyList() {
     return qData.food_allergies.map((a, i) => `
         <div style="display:flex;gap:8px;align-items:center;margin:6px 0;">
-            <input type="text" value="${escHtml(a.food||'')}" placeholder="椋熺墿鍚嶇О" style="flex:1;padding:8px;border:1px solid var(--border);border-radius:8px;" onchange="qData.food_allergies[${i}].food=this.value">
+            <input type="text" value="${escHtml(a.food||'')}" placeholder="食物名称" style="flex:1;padding:8px;border:1px solid var(--border);border-radius:8px;" onchange="qData.food_allergies[${i}].food=this.value">
             <select style="padding:8px;border:1px solid var(--border);border-radius:8px;" onchange="qData.food_allergies[${i}].severity=this.value">
-                <option value="mild" ${a.severity==='mild'?'selected':''}>杞诲害</option>
-                <option value="moderate" ${a.severity==='moderate'?'selected':''}>涓害</option>
-                <option value="severe" ${a.severity==='severe'?'selected':''}>閲嶅害</option>
+                <option value="mild" ${a.severity==='mild'?'selected':''}>轻度</option>
+                <option value="moderate" ${a.severity==='moderate'?'selected':''}>中度</option>
+                <option value="severe" ${a.severity==='severe'?'selected':''}>重度</option>
             </select>
-            <span onclick="removeAllergy(${i})" style="cursor:pointer;color:var(--text-secondary);font-size:18px;">脳</span>
+            <span onclick="removeAllergy(${i})" style="cursor:pointer;color:var(--text-secondary);font-size:18px;">×</span>
         </div>
     `).join('');
 }
@@ -674,7 +674,7 @@ function prevQStep() {
 }
 
 function retakeQuestionnaire() {
-    if (!confirm('閲嶆柊濉啓闂嵎灏嗘洿鏂颁綘鐨勯ギ椋熷亸濂藉拰鍋ュ悍淇℃伅锛岀‘璁ょ户缁紵')) return;
+    if (!confirm('重新填写问卷将更新你的饮食偏好和健康信息，确认继续？')) return;
     currentQStep = 1;
     qData = {
         cuisine_preferences: [],
@@ -700,7 +700,7 @@ function retakeQuestionnaire() {
 
 async function submitQuestionnaire() {
     try {
-        document.getElementById('loading-msg').textContent = 'AI 姝ｅ湪鍒嗘瀽浣犵殑楗闂嵎...';
+        document.getElementById('loading-msg').textContent = 'AI 正在分析你的饮食问卷...';
         showPage('loading');
         document.getElementById('bottom-nav').style.display = 'none';
         await api('PUT', '/user/questionnaire', qData);
@@ -710,14 +710,14 @@ async function submitQuestionnaire() {
         // Save tag preferences too
         await api('PUT', '/user/preferences', { likes: [...selectedLikes], dislikes: [...selectedDislikes], allergies: [...selectedAllergies] });
 
-        document.getElementById('loading-msg').textContent = 'AI 姝ｅ湪鐢熸垚楗鏂规...';
+        document.getElementById('loading-msg').textContent = 'AI 正在生成饮食方案...';
         const plan = await api('POST', '/meal/generate', { plan_type: '7day' });
         currentPlan = plan;
         currentDay = 1;
         document.getElementById('bottom-nav').style.display = 'flex';
         navigateTo('home');
-        toast('鏂规鐢熸垚鎴愬姛');
-    } catch(e) { toast('鐢熸垚澶辫触: ' + e.message); navigateTo('questionnaire'); renderQStep(); }
+        toast('方案生成成功');
+    } catch(e) { toast('生成失败: ' + e.message); navigateTo('questionnaire'); renderQStep(); }
 }
 
 function renderPreferenceTags() {
@@ -739,7 +739,7 @@ function toggleTag(containerId, name) {
     renderPreferenceTags();
 }
 
-// 鈹€鈹€ Home 鈹€鈹€
+// ── Home ──
 async function loadLatestPlan() {
     try {
         const plans = await api('GET', '/meal/plans');
@@ -773,30 +773,30 @@ function renderHome() {
         statusEl.innerHTML = '';
         pickerEl.innerHTML = '';
         nutrientsEl.innerHTML = '';
-        mealsEl.innerHTML = '<div class="empty-state"><p>杩樻病鏈夐ギ椋熸柟妗?/p><button class="btn" onclick="regeneratePlan()">鐢熸垚鏂规</button></div>';
+        mealsEl.innerHTML = '<div class="empty-state"><p>还没有饮食方案?/p><button class="btn" onclick="regeneratePlan()">生成方案</button></div>';
         actionsEl.innerHTML = '';
         return;
     }
 
     // Plan expired
     if (isPlanExpired()) {
-        statusEl.innerHTML = `<div class="expired-banner">鏂规宸插埌鏈?<button class="btn-inline" onclick="regeneratePlan()">閲嶆柊鐢熸垚</button></div>`;
+        statusEl.innerHTML = `<div class="expired-banner">方案已到期?<button class="btn-inline" onclick="regeneratePlan()">重新生成</button></div>`;
     } else {
         const remaining = planDaysRemaining();
         statusEl.innerHTML = remaining <= 3
-            ? `<div class="expired-banner">鏂规杩樺墿 ${remaining} 澶?<button class="btn-inline" onclick="regeneratePlan()">缁湡</button></div>`
+            ? `<div class="expired-banner">方案还剩 ${remaining} ?<button class="btn-inline" onclick="regeneratePlan()">续期</button></div>`
             : '';
     }
 
     // Nutrients
     nutrientsEl.innerHTML = `
         <div class="card">
-            <div class="section-title">姣忔棩钀ュ吇绱犵洰鏍?/div>
+            <div class="section-title">每日营养素目标?/div>
             <div class="nutrient-bar">
-                <div class="nutrient-item"><div class="val">${currentPlan.calories_target}</div><div class="lbl">鐑噺 kcal</div></div>
-                <div class="nutrient-item"><div class="val">${currentPlan.protein_target_g}</div><div class="lbl">铔嬬櫧 g</div></div>
-                <div class="nutrient-item"><div class="val">${currentPlan.carbs_target_g}</div><div class="lbl">纰虫按 g</div></div>
-                <div class="nutrient-item"><div class="val">${currentPlan.fat_target_g}</div><div class="lbl">鑴傝偑 g</div></div>
+                <div class="nutrient-item"><div class="val">${currentPlan.calories_target}</div><div class="lbl">热量 kcal</div></div>
+                <div class="nutrient-item"><div class="val">${currentPlan.protein_target_g}</div><div class="lbl">蛋白 g</div></div>
+                <div class="nutrient-item"><div class="val">${currentPlan.carbs_target_g}</div><div class="lbl">碳水 g</div></div>
+                <div class="nutrient-item"><div class="val">${currentPlan.fat_target_g}</div><div class="lbl">脂肪 g</div></div>
             </div>
         </div>`;
 
@@ -808,32 +808,32 @@ function renderHome() {
 
     // Meals
     const dayMeals = currentPlan.meals.filter(m => m.day_index === currentDay);
-    const typeNames = { breakfast: '鏃╅', lunch: '鍗堥', dinner: '鏅氶' };
+    const typeNames = { breakfast: '早餐', lunch: '午餐', dinner: '晚餐' };
     mealsEl.innerHTML = dayMeals.map(m => `
         <div class="meal-card">
-            <div class="meal-type">${typeNames[m.meal_type] || m.meal_type}${m.is_user_swapped ? ' 路 宸叉浛鎹? : ''} 路 ${m.meal_source === 'ready_to_eat' ? '鍗抽' : '鑷埗'}</div>
+            <div class="meal-type">${typeNames[m.meal_type] || m.meal_type}${m.is_user_swapped ? ' · 已替换? : ''} · ${m.meal_source === 'ready_to_eat' ? '即食' : '自制'}</div>
             <div class="meal-name">${m.meal_name}</div>
-            <div class="macros"><span>${m.calories} kcal</span><span>铔嬬櫧 ${m.protein_g}g</span><span>纰虫按 ${m.carbs_g}g</span><span>鑴傝偑 ${m.fat_g}g</span></div>
-            <div class="meta">${m.cooking_time_min} 鍒嗛挓</div>
+            <div class="macros"><span>${m.calories} kcal</span><span>蛋白 ${m.protein_g}g</span><span>碳水 ${m.carbs_g}g</span><span>脂肪 ${m.fat_g}g</span></div>
+            <div class="meta">${m.cooking_time_min} 分钟</div>
             <div class="actions">
-                <button class="btn btn-sm btn-secondary" onclick="viewMealDetail(${m.id})">璇︽儏</button>
-                <button class="btn btn-sm btn-text" onclick="openSwap(${m.id})">鏇挎崲椋熸潗</button>
+                <button class="btn btn-sm btn-secondary" onclick="viewMealDetail(${m.id})">详情</button>
+                <button class="btn btn-sm btn-text" onclick="openSwap(${m.id})">替换食材</button>
             </div>
         </div>
     `).join('');
 
     // Actions
     actionsEl.innerHTML = `
-        <button class="btn btn-secondary" onclick="viewShoppingList()" style="margin-top:6px;">鏌ョ湅閲囪喘娓呭崟</button>
-        <button class="btn btn-text" onclick="regeneratePlan()" style="margin-top:4px;">閲嶆柊鐢熸垚鏂规</button>`;
+        <button class="btn btn-secondary" onclick="viewShoppingList()" style="margin-top:6px;">查看采购清单</button>
+        <button class="btn btn-text" onclick="regeneratePlan()" style="margin-top:4px;">重新生成方案</button>`;
 }
 
 function selectDay(day) { currentDay = day; renderHome(); }
 
 async function regeneratePlan() {
-    if (!confirm('灏嗘牴鎹綋鍓嶅亸濂介噸鏂扮敓鎴愰ギ椋熸柟妗堬紝纭锛?)) return;
+    if (!confirm('将根据当前偏好重新生成饮食方案，确认？?)) return;
     try {
-        document.getElementById('loading-msg').textContent = 'AI 姝ｅ湪閲嶆柊鐢熸垚鏂规...';
+        document.getElementById('loading-msg').textContent = 'AI 正在重新生成方案...';
         showPage('loading');
         document.getElementById('bottom-nav').style.display = 'none';
         const planType = currentPlan ? currentPlan.plan_type : '7day';
@@ -842,36 +842,36 @@ async function regeneratePlan() {
         currentDay = 1;
         document.getElementById('bottom-nav').style.display = 'flex';
         navigateTo('home');
-        toast('鏂规宸叉洿鏂?);
-    } catch(e) { toast('鐢熸垚澶辫触: ' + e.message); navigateTo('home'); }
+        toast('方案已更新?);
+    } catch(e) { toast('生成失败: ' + e.message); navigateTo('home'); }
 }
 
-// 鈹€鈹€ Meal Detail 鈹€鈹€
+// ── Meal Detail ──
 async function viewMealDetail(mealId) {
     const meal = currentPlan.meals.find(m => m.id === mealId);
     if (!meal) return;
     document.getElementById('detail-content').innerHTML = `
         <div class="card">
             <div class="section-title">${meal.meal_name}</div>
-            <p style="color:var(--text-secondary);font-size:13px;margin-bottom:8px;">绗?${meal.day_index} 澶?路 ${meal.meal_type} 路 ${meal.meal_source==='ready_to_eat'?'鍗抽':'鑷埗'} 路 ${meal.cooking_time_min} 鍒嗛挓</p>
+            <p style="color:var(--text-secondary);font-size:13px;margin-bottom:8px;">?${meal.day_index} ?· ${meal.meal_type} · ${meal.meal_source==='ready_to_eat'?'即食':'自制'} · ${meal.cooking_time_min} 分钟</p>
             <div class="nutrient-bar">
-                <div class="nutrient-item"><div class="val">${meal.calories}</div><div class="lbl">鐑噺</div></div>
-                <div class="nutrient-item"><div class="val">${meal.protein_g}g</div><div class="lbl">铔嬬櫧</div></div>
-                <div class="nutrient-item"><div class="val">${meal.carbs_g}g</div><div class="lbl">纰虫按</div></div>
-                <div class="nutrient-item"><div class="val">${meal.fat_g}g</div><div class="lbl">鑴傝偑</div></div>
+                <div class="nutrient-item"><div class="val">${meal.calories}</div><div class="lbl">热量</div></div>
+                <div class="nutrient-item"><div class="val">${meal.protein_g}g</div><div class="lbl">蛋白</div></div>
+                <div class="nutrient-item"><div class="val">${meal.carbs_g}g</div><div class="lbl">碳水</div></div>
+                <div class="nutrient-item"><div class="val">${meal.fat_g}g</div><div class="lbl">脂肪</div></div>
             </div>
         </div>
         <div class="card">
-            <div class="section-title">椋熸潗娓呭崟</div>
+            <div class="section-title">食材清单</div>
             ${meal.ingredients.map(i => `<div class="shop-row"><span>${i.name}</span><span class="qty">${i.quantity_g}g</span></div>`).join('')}
         </div>
-        ${meal.instructions ? `<div class="card"><div class="section-title">鍋氭硶</div><p style="font-size:14px;line-height:1.6;">${meal.instructions}</p></div>` : ''}
-        ${meal.is_user_swapped ? '<div class="warning-box">姝ら宸叉浛鎹㈤鏉愶紝钀ュ吇缁撴瀯鍙兘涓庡師鏂规涓嶅悓锛屼粎渚涘弬鑰冦€?/div>' : ''}
+        ${meal.instructions ? `<div class="card"><div class="section-title">做法</div><p style="font-size:14px;line-height:1.6;">${meal.instructions}</p></div>` : ''}
+        ${meal.is_user_swapped ? '<div class="warning-box">此餐已替换食材，营养结构可能与原方案不同，仅供参考。?/div>' : ''}
     `;
     navigateTo('detail');
 }
 
-// 鈹€鈹€ Swap 鈹€鈹€
+// ── Swap ──
 let currentSwapMealId = null;
 async function openSwap(mealId) {
     currentSwapMealId = mealId;
@@ -888,36 +888,36 @@ async function openSwap(mealId) {
 
 async function requestSwap(ingredientName) {
     try {
-        document.getElementById('swap-alternatives').innerHTML = '<div class="loading-wrap"><div class="spinner"></div><p class="loading-text">AI 姝ｅ湪鏌ユ壘鏇夸唬椋熸潗...</p></div>';
+        document.getElementById('swap-alternatives').innerHTML = '<div class="loading-wrap"><div class="spinner"></div><p class="loading-text">AI 正在查找替代食材...</p></div>';
         const data = await api('POST', '/meal/swap', { meal_id: currentSwapMealId, current_ingredient: ingredientName });
         document.getElementById('swap-alternatives').innerHTML = `
-            <p style="font-weight:600;margin:12px 0 8px;">鏇挎崲銆?{data.original}銆嶇殑寤鸿</p>
+            <p style="font-weight:600;margin:12px 0 8px;">替换「?{data.original}」的建议</p>
             ${data.alternatives.map(a => `
                 <div class="card" style="padding:14px;margin:8px 0;">
                     <div style="font-weight:600;font-size:15px;">${a.name} ${a.quantity_g}g</div>
-                    <div style="font-size:12px;color:var(--text-secondary);margin:4px 0;">鐑噺鍙樺寲 ${a.calories_diff>0?'+':''}${a.calories_diff}kcal 路 铔嬬櫧鍙樺寲 ${a.protein_diff_g>0?'+':''}${a.protein_diff_g}g</div>
+                    <div style="font-size:12px;color:var(--text-secondary);margin:4px 0;">热量变化 ${a.calories_diff>0?'+':''}${a.calories_diff}kcal · 蛋白变化 ${a.protein_diff_g>0?'+':''}${a.protein_diff_g}g</div>
                     <div style="font-size:13px;color:var(--text-secondary);">${a.reason}</div>
-                    <button class="btn btn-sm" onclick="confirmSwap('${ingredientName}', '${a.name}')" style="margin-top:8px;">閫夋嫨</button>
+                    <button class="btn btn-sm" onclick="confirmSwap('${ingredientName}', '${a.name}')" style="margin-top:8px;">选择</button>
                 </div>
             `).join('')}
         `;
         document.getElementById('swap-warning-box').style.display = 'block';
-    } catch(e) { toast('鏇挎崲澶辫触: ' + e.message); }
+    } catch(e) { toast('替换失败: ' + e.message); }
 }
 
 async function confirmSwap(oldIngredient, newIngredient) {
     try {
         await api('POST', '/meal/swap-warning', { meal_id: currentSwapMealId, old_ingredient: oldIngredient, new_ingredient: newIngredient });
-        toast('宸叉浛鎹?);
+        toast('已替换?);
         closeSwap();
         currentPlan = await api('GET', `/meal/plan/${currentPlan.id}`);
         renderHome();
-    } catch(e) { toast('纭澶辫触: ' + e.message); }
+    } catch(e) { toast('确认失败: ' + e.message); }
 }
 
 function closeSwap() { document.getElementById('page-swap').classList.remove('open'); }
 
-// 鈹€鈹€ Health 鈹€鈹€
+// ── Health ──
 async function saveHealthRecord() {
     const data = {
         record_date: today(),
@@ -927,23 +927,23 @@ async function saveHealthRecord() {
         mood: document.getElementById('hr-mood').value,
         plan_followed: document.getElementById('hr-plan-followed').checked,
     };
-    try { await api('POST', '/health/record', data); toast('宸蹭繚瀛?); loadHealthHistory(); }
-    catch(e) { toast('淇濆瓨澶辫触: ' + e.message); }
+    try { await api('POST', '/health/record', data); toast('已保存?); loadHealthHistory(); }
+    catch(e) { toast('保存失败: ' + e.message); }
 }
 
 async function loadHealthHistory() {
     try {
         const records = await api('GET', '/health/records?days=30');
         document.getElementById('health-history').innerHTML = records.length === 0
-            ? '<p style="color:var(--text-secondary);text-align:center;padding:20px;">鏆傛棤璁板綍</p>'
+            ? '<p style="color:var(--text-secondary);text-align:center;padding:20px;">暂无记录</p>'
             : records.slice(0, 10).map(r => `
                 <div class="record-row">
                     <span style="color:var(--text);">${r.record_date}</span>
                     <span>${r.weight_kg ? r.weight_kg+'kg' : '-'}</span>
                     <span>${r.calories_intake}kcal</span>
                     <span>${r.diet_compliance}%</span>
-                    <span>${r.mood === 'great' ? '寰堝ソ' : r.mood === 'ok' ? '涓€鑸? : '涓嶅ソ'}</span>
-                    <span>${r.plan_followed === true ? '鉁? : r.plan_followed === false ? '鉁? : '-'}</span>
+                    <span>${r.mood === 'great' ? '很好' : r.mood === 'ok' ? '一般? : '不好'}</span>
+                    <span>${r.plan_followed === true ? '✓' : r.plan_followed === false ? '✗' : '-'}</span>
                 </div>
             `).join('');
     } catch(e) {}
@@ -951,22 +951,22 @@ async function loadHealthHistory() {
 
 async function generateMonthlyReport() {
     try {
-        document.getElementById('monthly-report').innerHTML = '<div class="loading-wrap"><div class="spinner"></div><p class="loading-text">AI 鐢熸垚鎶ュ憡涓?..</p></div>';
+        document.getElementById('monthly-report').innerHTML = '<div class="loading-wrap"><div class="spinner"></div><p class="loading-text">AI 生成报告中?..</p></div>';
         const report = await api('GET', '/health/report/monthly');
         document.getElementById('monthly-report').innerHTML = `
             <div class="card" style="margin-top:12px;">
-                <div class="section-title">${report.month} 鏈堝害鎶ュ憡</div>
+                <div class="section-title">${report.month} 月度报告</div>
                 <p style="font-size:14px;line-height:1.6;">${report.suggestion}</p>
                 <div style="margin-top:10px;font-size:12px;color:var(--text-secondary);">
-                    <div>骞冲潎鎵ц鐜?${report.avg_compliance}%</div>
-                    <div>骞冲潎鎽勫叆 ${report.avg_calories}kcal</div>
+                    <div>平均执行率?${report.avg_compliance}%</div>
+                    <div>平均摄入 ${report.avg_calories}kcal</div>
                 </div>
             </div>
         `;
-    } catch(e) { toast('鐢熸垚澶辫触: ' + e.message); }
+    } catch(e) { toast('生成失败: ' + e.message); }
 }
 
-// 鈹€鈹€ Shopping 鈹€鈹€
+// ── Shopping ──
 function getDayDate(dayIndex) {
     if (!currentPlan || !currentPlan.start_date) return null;
     const d = new Date(currentPlan.start_date);
@@ -989,7 +989,7 @@ function isDayLocked(dayIndex) {
 }
 
 async function viewShoppingList() {
-    if (!currentPlan) { toast('璇峰厛鐢熸垚鏂规'); return; }
+    if (!currentPlan) { toast('请先生成方案'); return; }
     shoppingMode = 'flat'; currentShoppingPeriod = '3day';
     navigateTo('shopping');
     updateShoppingButtons();
@@ -1053,7 +1053,7 @@ async function loadShoppingList(period) {
         computeOrderFromShoppingData(data);
         renderShoppingList();
         renderOrderSummary();
-    } catch(e) { toast('鍔犺浇澶辫触: ' + e.message); }
+    } catch(e) { toast('加载失败: ' + e.message); }
 }
 
 function renderShoppingList() {
@@ -1065,23 +1065,23 @@ function renderShoppingList() {
         showInstructions = {};
         const anyLocked = data.days.some(d => isDayLocked(d.day_index));
         if (anyLocked) {
-            html += `<div class="lock-banner"><span>&#128274;</span><span>宸茬‘璁よ鍗曢厤閫佹棩鍦?澶╁唴宸查攣瀹氾紝涓嶅彲淇敼銆傜3澶╄捣鍙甯哥紪杈戙€?/span></div>`;
+            html += `<div class="lock-banner"><span>&#128274;</span><span>已确认订单配送日?天内已锁定，不可修改。第3天起可正常编辑。?/span></div>`;
         }
         for (const day of data.days) {
             const dayLocked = isDayLocked(day.day_index);
             const hasConfirmed = confirmedOrders.some(o => o.day_index === day.day_index && o.status === 'confirmed');
             html += `<div class="card" style="margin-bottom:14px;">
                 <div class="section-title" style="font-size:14px;color:var(--text);">
-                    绗?${day.day_index} 澶?                    ${dayLocked ? '<span class="lock-badge">&#128274; 宸查攣瀹?/span>' : (hasConfirmed ? '<span class="lock-badge" style="background:#d4edda;color:#155724;">宸茬‘璁?(鍙慨鏀?</span>' : '')}
+                    ?${day.day_index} ?                    ${dayLocked ? '<span class="lock-badge">&#128274; 已锁定?/span>' : (hasConfirmed ? '<span class="lock-badge" style="background:#d4edda;color:#155724;">已确认?(可修改?</span>' : '')}
                 </div>`;
             for (const meal of day.meals) {
-                const typeLabel = {breakfast:'鏃╅',lunch:'鍗堥',dinner:'鏅氶'}[meal.meal_type] || meal.meal_type;
+                const typeLabel = {breakfast:'早餐',lunch:'午餐',dinner:'晚餐'}[meal.meal_type] || meal.meal_type;
                 const mealKey = `d${day.day_index}m${meal.meal_type}`;
                 html += `<div class="meal-card">
-                    <div class="meal-type">${typeLabel} 路 ${meal.meal_source==='ready_to_eat'?'鍗抽':'鑷埗'} 路 ${meal.cooking_time_min}鍒嗛挓</div>
+                    <div class="meal-type">${typeLabel} · ${meal.meal_source==='ready_to_eat'?'即食':'自制'} · ${meal.cooking_time_min}分钟</div>
                     <div class="meal-name">${escHtml(meal.meal_name)}</div>`;
                 if (meal.instructions) {
-                    html += `<span class="instructions-toggle" onclick="toggleInstructions('${mealKey}')" id="instr-toggle-${mealKey}">鈻?鏌ョ湅鍋氭硶</span>
+                    html += `<span class="instructions-toggle" onclick="toggleInstructions('${mealKey}')" id="instr-toggle-${mealKey}">?查看做法</span>
                         <div class="instructions-body" id="instr-${mealKey}">${escHtml(meal.instructions)}</div>`;
                 }
                 html += `<div style="margin-top:6px;">`;
@@ -1095,9 +1095,9 @@ function renderShoppingList() {
         }
     } else if (data.items) {
         const anyLocked = confirmedOrders.some(o => { const d = getDayDate(o.day_index); if (!d) return false; const todayDate = new Date(); todayDate.setHours(0,0,0,0); return Math.ceil((d.getTime()-todayDate.getTime())/86400000) <= 2; });
-        html += `<div class="card"><div class="section-title">${data.period} 閲囪喘娓呭崟 路 ${data.item_count} 绉嶉鏉?/div>`;
+        html += `<div class="card"><div class="section-title">${data.period} 采购清单 · ${data.item_count} 种食材?/div>`;
         if (anyLocked) {
-            html += `<div class="lock-banner"><span>&#128274;</span><span>閮ㄥ垎閰嶉€佹棩鍦?澶╁唴宸查攣瀹氥€傚缓璁垏鎹㈠埌"鎸夋棩閰嶉€?妯″紡鏌ョ湅閿佸畾璇︽儏銆?/span></div>`;
+            html += `<div class="lock-banner"><span>&#128274;</span><span>部分配送日?天内已锁定。建议切换到"按日配送?模式查看锁定详情。?/span></div>`;
         }
         for (let idx = 0; idx < orderItems.length; idx++) {
             html += renderOrderRow(idx, false);
@@ -1111,7 +1111,7 @@ function renderOrderRow(idx, locked) {
     if (idx < 0 || idx >= orderItems.length) return '';
     const item = orderItems[idx];
     const isLocked = locked === true;
-    const priceDisplay = item.price > 0 ? `楼${item.price.toFixed(1)}` : '--';
+    const priceDisplay = item.price > 0 ? `¥${item.price.toFixed(1)}` : '--';
     const disabledAttr = isLocked ? ' disabled' : '';
     const lockedClass = isLocked ? ' locked' : '';
     const lockIcon = isLocked ? '<span style="font-size:13px;margin-left:2px;">&#128274;</span>' : '';
@@ -1126,7 +1126,7 @@ function renderOrderRow(idx, locked) {
 function toggleOrderItem(idx) {
     const item = orderItems[idx];
     if (item && item.mealRef && shoppingMode === 'daily' && isDayLocked(item.mealRef.day)) {
-        toast('璇ラ鏉愭墍鍦ㄩ厤閫佹棩鍦?澶╁唴宸查攣瀹氾紝鏃犳硶淇敼');
+        toast('该食材所在配送日?天内已锁定，无法修改');
         return;
     }
     orderItems[idx].checked = !orderItems[idx].checked;
@@ -1138,7 +1138,7 @@ function toggleOrderItem(idx) {
 function updateOrderQty(idx, val) {
     const item = orderItems[idx];
     if (item && item.mealRef && shoppingMode === 'daily' && isDayLocked(item.mealRef.day)) {
-        toast('璇ラ鏉愭墍鍦ㄩ厤閫佹棩鍦?澶╁唴宸查攣瀹氾紝鏃犳硶淇敼');
+        toast('该食材所在配送日?天内已锁定，无法修改');
         const rows = document.querySelectorAll('#shopping-items .shop-order-row');
         if (rows[idx]) {
             const qtyInput = rows[idx].querySelector('.qty-input');
@@ -1155,7 +1155,7 @@ function updateOrderQty(idx, val) {
     const rows = document.querySelectorAll('#shopping-items .shop-order-row');
     if (rows[idx]) {
         const priceEl = rows[idx].querySelector('.shop-price');
-        if (priceEl) priceEl.textContent = item.price > 0 ? `楼${item.price.toFixed(1)}` : '--';
+        if (priceEl) priceEl.textContent = item.price > 0 ? `¥${item.price.toFixed(1)}` : '--';
     }
     renderOrderSummary();
 }
@@ -1167,14 +1167,14 @@ function renderOrderSummary() {
     const totalQty = checked.reduce((s, i) => s + i.qty_g, 0);
     const qtyDisplay = totalQty >= 1000 ? `${(totalQty/1000).toFixed(1)}kg` : `${Math.round(totalQty)}g`;
     const lockNote = shoppingMode === 'daily' && confirmedOrders.some(o => isDayLocked(o.day_index))
-        ? '<p style="font-size:11px;color:var(--text-secondary);margin-top:4px;">宸查攣瀹氶鏉愪笉鍙慨鏀癸紝鑷畾涔夋坊鍔犱笉鍙楅檺</p>' : '';
+        ? '<p style="font-size:11px;color:var(--text-secondary);margin-top:4px;">已锁定食材不可修改，自定义添加不受限</p>' : '';
     document.getElementById('order-summary').innerHTML = `
         <div class="order-summary">
-            <div class="total-row"><span>棰勪及鎬讳环</span><span>楼${totalPrice.toFixed(1)}</span></div>
-            <div class="detail-row"><span>${totalItems} 绉嶉鏉?/span><span>鍏?${qtyDisplay}</span></div>
+            <div class="total-row"><span>预估总价</span><span>¥${totalPrice.toFixed(1)}</span></div>
+            <div class="detail-row"><span>${totalItems} 种食材?/span><span>?${qtyDisplay}</span></div>
             <div style="display:flex;gap:8px;margin-top:12px;">
-                <button class="btn btn-sm btn-secondary" onclick="addCustomItemRow()">+ 娣诲姞椋熸潗</button>
-                <button class="btn btn-sm" onclick="confirmOrder()">纭涓嬪崟</button>
+                <button class="btn btn-sm btn-secondary" onclick="addCustomItemRow()">+ 添加食材</button>
+                <button class="btn btn-sm" onclick="confirmOrder()">确认下单</button>
             </div>
             ${lockNote}
             <div id="custom-item-row" style="margin-top:8px;"></div>
@@ -1184,10 +1184,10 @@ function renderOrderSummary() {
 function addCustomItemRow() {
     document.getElementById('custom-item-row').innerHTML = `
         <div class="add-item-row">
-            <input type="text" id="custom-name" placeholder="椋熸潗鍚嶇О" style="flex:2;">
-            <input type="number" id="custom-qty" placeholder="鍏嬫暟" value="100" min="1" style="width:70px;">
-            <input type="number" id="custom-price" placeholder="鍗曚环/500g" value="0" min="0" step="0.1" style="width:90px;">
-            <button class="btn btn-sm" onclick="addCustomItem()" style="flex-shrink:0;">娣诲姞</button>
+            <input type="text" id="custom-name" placeholder="食材名称" style="flex:2;">
+            <input type="number" id="custom-qty" placeholder="克数" value="100" min="1" style="width:70px;">
+            <input type="number" id="custom-price" placeholder="单价/500g" value="0" min="0" step="0.1" style="width:90px;">
+            <button class="btn btn-sm" onclick="addCustomItem()" style="flex-shrink:0;">添加</button>
         </div>`;
 }
 
@@ -1195,7 +1195,7 @@ function addCustomItem() {
     const name = document.getElementById('custom-name').value.trim();
     const qty = parseFloat(document.getElementById('custom-qty').value) || 0;
     const pricePer500g = parseFloat(document.getElementById('custom-price').value) || 0;
-    if (!name || qty <= 0) { toast('璇峰～鍐欏悕绉板拰鏁伴噺'); return; }
+    if (!name || qty <= 0) { toast('请填写名称和数量'); return; }
     const estPrice = parseFloat(((qty / 500) * pricePer500g).toFixed(2));
     const display = qty >= 1000 ? `${(qty/1000).toFixed(1)}kg` : `${Math.round(qty)}g`;
     orderItems.push({
@@ -1204,13 +1204,13 @@ function addCustomItem() {
     });
     renderShoppingList();
     renderOrderSummary();
-    toast('宸叉坊鍔?);
+    toast('已添加?);
 }
 
 async function confirmOrder() {
-    if (!currentPlan) { toast('璇峰厛鐢熸垚鏂规'); return; }
+    if (!currentPlan) { toast('请先生成方案'); return; }
     const checked = orderItems.filter(i => i.checked && !i.isCustom);
-    if (checked.length === 0) { toast('璇疯嚦灏戦€夋嫨涓€椤归鏉?); return; }
+    if (checked.length === 0) { toast('请至少选择一项食材?); return; }
 
     if (shoppingMode === 'daily') {
         // Group items by day_index
@@ -1221,7 +1221,7 @@ async function confirmOrder() {
             if (!byDay[d]) byDay[d] = [];
             byDay[d].push({ name: item.name, quantity_g: item.qty_g, price: item.price });
         }
-        if (Object.keys(byDay).length === 0) { toast('鏃犳硶璇嗗埆閰嶉€佹棩锛岃鍒囨崲鍒版寜鏃ラ厤閫佹ā寮?); return; }
+        if (Object.keys(byDay).length === 0) { toast('无法识别配送日，请切换到按日配送模式?); return; }
 
         // Confirm each day that's not locked
         let confirmed = 0;
@@ -1238,10 +1238,10 @@ async function confirmOrder() {
                     items: items,
                 });
                 confirmed++;
-            } catch(e) { toast(`绗?{dayNum}澶╀笅鍗曞け璐? ${e.message}`); }
+            } catch(e) { toast(`?{dayNum}天下单失败? ${e.message}`); }
         }
         if (confirmed > 0) {
-            toast(`宸茬‘璁?${confirmed} 澶╃殑璁㈠崟`);
+            toast(`已确认?${confirmed} 天的订单`);
             // Reload to get updated lock state
             loadShoppingList(currentShoppingPeriod);
         }
@@ -1257,9 +1257,9 @@ async function confirmOrder() {
                 delivery_date: dayDate.toISOString().split('T')[0],
                 items: items,
             });
-            toast('璁㈠崟宸茬‘璁?);
+            toast('订单已确认?);
             loadShoppingList(currentShoppingPeriod);
-        } catch(e) { toast('涓嬪崟澶辫触: ' + e.message); }
+        } catch(e) { toast('下单失败: ' + e.message); }
     }
 }
 
@@ -1268,21 +1268,21 @@ function toggleInstructions(key) {
     const body = document.getElementById('instr-' + key);
     const toggle = document.getElementById('instr-toggle-' + key);
     if (body) body.classList.toggle('open');
-    if (toggle) toggle.textContent = showInstructions[key] ? '鈻?闅愯棌鍋氭硶' : '鈻?鏌ョ湅鍋氭硶';
+    if (toggle) toggle.textContent = showInstructions[key] ? '?隐藏做法' : '?查看做法';
 }
 
-// 鈹€鈹€ Mine 鈹€鈹€
+// ── Mine ──
 function renderMine() {
     if (!currentUser) return;
     document.getElementById('mine-nickname').textContent = currentUser.nickname || '--';
-    const goalMap = { fat_loss: '鍑忚剛', muscle_gain: '澧炶倢', shaping: '濉戝舰', healthy: '鍋ュ悍楗' };
+    const goalMap = { fat_loss: '减脂', muscle_gain: '增肌', shaping: '塑形', healthy: '健康饮食' };
     document.getElementById('mine-goal').textContent = goalMap[currentUser.goal_type] || '--';
-    document.getElementById('mine-age').textContent = currentUser.age ? currentUser.age + ' 宀? : '--';
+    document.getElementById('mine-age').textContent = currentUser.age ? currentUser.age + ' ? : '--';
     document.getElementById('mine-height').textContent = currentUser.height_cm ? currentUser.height_cm + ' cm' : '--';
     document.getElementById('mine-weight').textContent = currentUser.weight_kg ? currentUser.weight_kg + ' kg' : '--';
     document.getElementById('mine-address').value = currentUser.address || '';
     if (currentUser.latitude && currentUser.longitude) {
-        document.getElementById('mine-coords').textContent = `宸插畾浣? ${currentUser.latitude.toFixed(4)}, ${currentUser.longitude.toFixed(4)}`;
+        document.getElementById('mine-coords').textContent = `已定位? ${currentUser.latitude.toFixed(4)}, ${currentUser.longitude.toFixed(4)}`;
     } else {
         document.getElementById('mine-coords').textContent = '';
     }
@@ -1294,25 +1294,25 @@ async function updateAddress() {
     try {
         await api('PUT', '/user/location', { address });
         currentUser.address = address;
-        toast('鍦板潃宸叉洿鏂?);
-    } catch(e) { toast('淇濆瓨澶辫触: ' + e.message); }
+        toast('地址已更新?);
+    } catch(e) { toast('保存失败: ' + e.message); }
 }
 
 function getGeoLocation() {
-    if (!navigator.geolocation) { toast('娴忚鍣ㄤ笉鏀寔瀹氫綅'); return; }
+    if (!navigator.geolocation) { toast('浏览器不支持定位'); return; }
     navigator.geolocation.getCurrentPosition(async (pos) => {
         const { latitude, longitude } = pos.coords;
-        document.getElementById('mine-coords').textContent = `宸插畾浣? ${latitude.toFixed(4)}, ${longitude.toFixed(4)}`;
+        document.getElementById('mine-coords').textContent = `已定位? ${latitude.toFixed(4)}, ${longitude.toFixed(4)}`;
         try {
             await api('PUT', '/user/location', { latitude, longitude });
             currentUser.latitude = latitude;
             currentUser.longitude = longitude;
-            toast('浣嶇疆宸叉洿鏂?);
-        } catch(e) { toast('淇濆瓨澶辫触: ' + e.message); }
-    }, () => { toast('瀹氫綅澶辫触锛岃妫€鏌ユ祻瑙堝櫒鏉冮檺'); });
+            toast('位置已更新?);
+        } catch(e) { toast('保存失败: ' + e.message); }
+    }, () => { toast('定位失败，请检查浏览器权限'); });
 }
 
-// 鈹€鈹€ Init 鈹€鈹€
+// ── Init ──
 (async function() {
     if (token) {
         try {
