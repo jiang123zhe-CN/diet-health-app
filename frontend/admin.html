@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>管理后台 - 饮食健康</title>
+    <style>
+        :root { --bg: #fff; --text: #1d1d1f; --text-secondary: #86868b; --text-tertiary: #aeaeb2; --border: #e5e5ea; --card: #f5f5f7; --shadow: 0 1px 2px rgba(0,0,0,.04); --radius: 12px; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', sans-serif; background: var(--bg); color: var(--text); max-width: 500px; margin: 0 auto; min-height: 100vh; -webkit-font-smoothing: antialiased; letter-spacing: -.01em; }
+        .section-title { font-size: 11px; font-weight: 600; color: var(--text-secondary); text-transform: uppercase; letter-spacing: .6px; margin-bottom: 10px; }
+        .btn { display: block; width: 100%; padding: 15px; border: none; border-radius: 10px; font-size: 16px; font-weight: 600; cursor: pointer; transition: all .15s; letter-spacing: -.2px; background: var(--text); color: #fff; }
+        .btn:active { opacity: .75; transform: scale(.98); }
+        .btn-secondary { background: var(--card); color: var(--text); border: 1px solid var(--border); }
+        .btn-sm { display: inline-block; width: auto; padding: 8px 18px; font-size: 13px; border-radius: 8px; margin-right: 8px; }
+        .btn-text { background: none; color: var(--text-secondary); font-weight: 500; font-size: 14px; width: auto; padding: 8px 0; }
+        .input-group { margin: 18px 0; }
+        .input-group label { display: block; font-size: 12px; font-weight: 500; color: var(--text-secondary); margin-bottom: 6px; }
+        .input-group input, .input-group select { width: 100%; padding: 13px 16px; border: 1px solid var(--border); border-radius: 10px; font-size: 16px; color: var(--text); background: var(--card); outline: none; transition: border-color .15s; -webkit-appearance: none; }
+        .input-group input:focus, .input-group select:focus { border-color: var(--text); background: var(--bg); }
+        .card { background: var(--card); border-radius: var(--radius); padding: 18px; margin: 10px 0; }
+        .toast { position: fixed; top: 24px; left: 50%; transform: translateX(-50%); background: var(--text); color: #fff; padding: 10px 22px; border-radius: 20px; font-size: 13px; font-weight: 500; z-index: 999; opacity: 0; transition: opacity .2s; pointer-events: none; }
+        .toast.show { opacity: 1; }
+        .loading-wrap { text-align: center; padding: 80px 20px; }
+        .spinner { display: inline-block; width: 28px; height: 28px; border: 2.5px solid var(--border); border-top-color: var(--text); border-radius: 50%; animation: spin .6s linear infinite; }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        .loading-text { margin-top: 16px; color: var(--text-secondary); font-size: 14px; }
+        .empty-state { text-align: center; padding: 48px 20px; }
+        .empty-state p { font-size: 15px; color: var(--text-secondary); margin-bottom: 20px; }
+        .shop-row { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid var(--border); font-size: 14px; }
+        .shop-row .qty { font-weight: 600; }
+        .delivery-status { display: inline-block; padding: 3px 10px; border-radius: 12px; font-size: 11px; font-weight: 600; letter-spacing: .2px; flex-shrink: 0; }
+        .delivery-status.pending { background: #fff3cd; color: #856404; }
+        .delivery-status.preparing { background: #cce5ff; color: #004085; }
+        .delivery-status.shipped { background: #d4edda; color: #155724; }
+        .delivery-status.delivered { background: #d1ecf1; color: #0c5460; }
+        .delivery-status.cancelled { background: #f8d7da; color: #721c24; }
+        .delivery-filter-bar { display: flex; gap: 6px; margin: 0 0 12px; flex-wrap: wrap; align-items: center; }
+        .delivery-filter-bar select, .delivery-filter-bar input { padding: 8px 12px; border: 1px solid var(--border); border-radius: 8px; font-size: 13px; color: var(--text); background: var(--bg); outline: none; min-width: 0; }
+        .delivery-summary-bar { display: flex; gap: 6px; margin: 0 0 14px; flex-wrap: wrap; }
+        .delivery-summary-bar .summary-badge { padding: 4px 10px; border-radius: 10px; font-size: 11px; font-weight: 600; background: var(--card); }
+        .instructions-toggle { font-size: 12px; color: var(--text-secondary); cursor: pointer; margin-top: 6px; font-weight: 500; user-select: none; display: inline-block; }
+        .instructions-body { font-size: 13px; line-height: 1.6; color: var(--text-secondary); margin-top: 6px; padding: 10px 12px; background: var(--bg); border-radius: 8px; display: none; }
+        .instructions-body.open { display: block; }
+        .lock-badge { display: inline-block; background: #fff3cd; color: #856404; padding: 2px 8px; border-radius: 8px; font-size: 11px; font-weight: 600; margin-left: 6px; vertical-align: middle; }
+        .admin-topbar { display: flex; justify-content: space-between; align-items: center; padding: 16px 20px; border-bottom: 1px solid var(--border); background: var(--bg); position: sticky; top: 0; z-index: 10; }
+        .admin-topbar a { font-size: 14px; color: var(--text-secondary); text-decoration: none; cursor: pointer; font-weight: 500; }
+        .admin-topbar a:hover { color: var(--text); }
+        .admin-topbar .title { font-weight: 700; font-size: 17px; }
+        .admin-container { padding: 0 20px 80px; }
+    </style>
+</head>
+<body>
+
+<div class="toast" id="toast"></div>
+
+<div class="admin-topbar">
+    <a href="/">&larr; 返回应用</a>
+    <span class="title">管理后台</span>
+    <span id="admin-user">--</span>
+</div>
+
+<div class="admin-container">
+    <div style="display:flex;gap:6px;margin:16px 0;flex-wrap:wrap;">
+        <button class="btn btn-sm" id="admin-tab-sm" onclick="switchAdminTab('supermarkets')">商超管理</button>
+        <button class="btn btn-sm btn-secondary" id="admin-tab-ing" onclick="switchAdminTab('ingredients')">食材管理</button>
+        <button class="btn btn-sm btn-secondary" id="admin-tab-del" onclick="switchAdminTab('delivery')">配送管理</button>
+        <button class="btn btn-sm btn-secondary" id="admin-tab-users" onclick="switchAdminTab('users')">用户管理</button>
+    </div>
+    <div id="admin-content"></div>
+</div>
+
+<script>
+// ── Utilities ──
+const API = 'http://localhost:8000/api/v1';
+let token = localStorage.getItem('token') || '';
+
+function toast(msg) { const t = document.getElementById('toast'); t.textContent = msg; t.classList.add('show'); setTimeout(() => t.classList.remove('show'), 2000); }
+function today() { return new Date().toISOString().split('T')[0]; }
+function escHtml(s) { return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+
+async function api(method, path, body = null) {
+    const headers = {'Content-Type': 'application/json'};
+    if (token) headers['Authorization'] = `Bearer ${token}`;
+    const opts = { method, headers };
+    if (body) opts.body = JSON.stringify(body);
+    const res = await fetch(`${API}${path}`, opts);
+    if (!res.ok) { const err = await res.json().catch(() => ({detail:'请求失败'})); throw new Error(err.detail || '请求失败'); }
+    return res.json();
+}
+
+// ── Admin State ──
+let adminSupermarkets = [];
+let adminIngredients = [];
+let adminCurrentView = 'list';
+let adminTab = 'supermarkets';
+let adminStats = null;
+let adminUsers = [];
+let adminDeliveryTasks = [];
+let adminDeliverySummary = {};
+let adminDeliveryFilters = { supermarket_id: '', status: '', date: '' };
+let adminDeliveryExpanded = {};
+
+// ── Tab Switching ──
+function switchAdminTab(tab) {
+    adminTab = tab;
+    document.getElementById('admin-tab-sm').className = tab === 'supermarkets' ? 'btn btn-sm' : 'btn btn-sm btn-secondary';
+    document.getElementById('admin-tab-ing').className = tab === 'ingredients' ? 'btn btn-sm' : 'btn btn-sm btn-secondary';
+    document.getElementById('admin-tab-del').className = tab === 'delivery' ? 'btn btn-sm' : 'btn btn-sm btn-secondary';
+    document.getElementById('admin-tab-users').className = tab === 'users' ? 'btn btn-sm' : 'btn btn-sm btn-secondary';
+    if (tab === 'supermarkets') renderAdminSupermarkets();
+    else if (tab === 'ingredients') renderAdminIngredients();
+    else if (tab === 'delivery') renderAdminDelivery();
+    else if (tab === 'users') renderAdminUsers();
+}
+
+async function renderAdmin() {
+    document.getElementById('admin-content').innerHTML = '<div class="loading-wrap"><div class="spinner"></div></div>';
+    try {
+        adminSupermarkets = await api('GET', '/admin/supermarkets');
+        adminIngredients = await api('GET', '/admin/ingredients');
+        if (adminTab === 'ingredients') renderAdminIngredients();
+        else if (adminTab === 'delivery') renderAdminDelivery();
+        else if (adminTab === 'users') renderAdminUsers();
+        else renderAdminSupermarkets();
+    } catch(e) { document.getElementById('admin-content').innerHTML = '<div class="empty-state"><p>加载失败: '+e.message+'</p></div>'; }
+}
+
+// ── Supermarket Management ──
+function renderAdminSupermarkets() {
+    adminCurrentView = 'list';
+    let html = '<div class="card" style="display:flex;justify-content:space-between;align-items:center;"><span style="font-weight:700;font-size:17px;">商超管理</span><button class="btn btn-sm" onclick="showCreateSupermarket()">+ 新建</button></div>';
+    if (adminSupermarkets.length === 0) { html += '<div class="empty-state"><p>暂无商超数据</p></div>'; }
+    else {
+        html += adminSupermarkets.map(s => '<div class="card" style="margin:8px 0;"><div style="font-weight:600;font-size:16px;">'+escHtml(s.name)+'</div><div style="font-size:13px;color:var(--text-secondary);margin:3px 0;">'+(escHtml(s.address)||'无地址')+'</div><div style="font-size:12px;color:var(--text-tertiary);">分配用户: '+s.assigned_user_count+' · '+(s.is_active?'启用':'禁用')+'</div><div style="margin-top:10px;display:flex;gap:6px;flex-wrap:wrap;"><button class="btn btn-sm" onclick="showAssignForm('+s.id+')">分配用户</button><button class="btn btn-sm" onclick="viewAssignments('+s.id+')">查看分配</button><button class="btn btn-sm" onclick="renderAdminAggregation('+s.id+')">聚合数据</button></div></div>').join('');
+    }
+    document.getElementById('admin-content').innerHTML = html;
+}
+
+function showCreateSupermarket() {
+    adminCurrentView = 'create';
+    document.getElementById('admin-content').innerHTML = '<div class="card"><div class="section-title">新建商超</div><div class="input-group"><label>名称</label><input type="text" id="sm-name" placeholder="商超名称"></div><div class="input-group"><label>地址</label><input type="text" id="sm-address" placeholder="详细地址"></div><div class="input-group"><label>纬度</label><input type="number" id="sm-lat" step="0.000001" placeholder="如 39.9042"></div><div class="input-group"><label>经度</label><input type="number" id="sm-lng" step="0.000001" placeholder="如 116.4074"></div><div class="input-group"><label>联系电话</label><input type="text" id="sm-contact" placeholder="可选"></div><div style="display:flex;gap:10px;margin-top:12px;"><button class="btn btn-secondary" onclick="renderAdminSupermarkets()">取消</button><button class="btn" onclick="createSupermarket()">保存</button></div></div>';
+}
+
+async function createSupermarket() {
+    const data = { name: document.getElementById('sm-name').value.trim(), address: document.getElementById('sm-address').value.trim(), latitude: parseFloat(document.getElementById('sm-lat').value), longitude: parseFloat(document.getElementById('sm-lng').value), contact: document.getElementById('sm-contact').value.trim() };
+    if (!data.name || isNaN(data.latitude) || isNaN(data.longitude)) { toast('请填写名称和坐标'); return; }
+    try { await api('POST', '/admin/supermarket', data); toast('创建成功'); adminSupermarkets = await api('GET', '/admin/supermarkets'); renderAdminSupermarkets(); } catch(e) { toast('创建失败: '+e.message); }
+}
+
+function showAssignForm(supermarketId) {
+    adminCurrentView = 'assign';
+    const sm = adminSupermarkets.find(s => s.id === supermarketId);
+    document.getElementById('admin-content').innerHTML = '<div class="card"><div class="section-title">分配用户到「'+escHtml(sm?sm.name:'')+'」</div><div class="input-group"><label>用户 ID</label><input type="number" id="assign-user-id" placeholder="输入用户ID"></div><div style="display:flex;gap:10px;margin-top:12px;"><button class="btn btn-secondary" onclick="renderAdminSupermarkets()">返回</button><button class="btn" onclick="assignUser('+supermarketId+')">确认分配</button></div></div>';
+}
+
+async function assignUser(supermarketId) {
+    const userId = parseInt(document.getElementById('assign-user-id').value);
+    if (isNaN(userId)) { toast('请输入有效的用户 ID'); return; }
+    try { await api('POST', '/admin/supermarket/assign', { supermarket_id: supermarketId, user_id: userId }); toast('分配成功'); adminSupermarkets = await api('GET', '/admin/supermarkets'); renderAdminSupermarkets(); } catch(e) { toast('分配失败: '+e.message); }
+}
+
+async function viewAssignments(supermarketId) {
+    try {
+        const users = await api('GET', '/admin/supermarket/'+supermarketId+'/assignments');
+        const sm = adminSupermarkets.find(s => s.id === supermarketId);
+        let html = '<div class="card"><div class="section-title">「'+escHtml(sm?sm.name:'')+'」已分配用户 ('+users.length+')</div><button class="btn btn-sm btn-secondary" onclick="renderAdminSupermarkets()" style="margin-bottom:12px;">&larr; 返回列表</button>';
+        if (users.length === 0) { html += '<p style="color:var(--text-secondary);text-align:center;padding:20px;">暂无分配</p>'; }
+        else { html += users.map(u => '<div class="card" style="margin:6px 0;display:flex;justify-content:space-between;align-items:center;"><div><div style="font-weight:600;">'+escHtml(u.nickname)+'</div><div style="font-size:12px;color:var(--text-secondary);">'+(escHtml(u.address)||'无地址')+' · ID: '+u.user_id+'</div></div><button class="btn btn-sm btn-text" onclick="removeAssignment('+u.assignment_id+','+supermarketId+')" style="color:#d32f2f;">移除</button></div>').join(''); }
+        html += '</div>';
+        document.getElementById('admin-content').innerHTML = html;
+    } catch(e) { toast('加载失败: '+e.message); }
+}
+
+async function removeAssignment(assignmentId, supermarketId) {
+    if (!confirm('确认移除此分配？')) return;
+    try { await api('DELETE', '/admin/supermarket/assign/'+assignmentId); toast('已移除'); viewAssignments(supermarketId); } catch(e) { toast('移除失败: '+e.message); }
+}
+
+async function renderAdminAggregation(supermarketId) {
+    adminCurrentView = 'aggregate';
+    const sm = adminSupermarkets.find(s => s.id === supermarketId);
+    document.getElementById('admin-content').innerHTML = '<div class="card"><div class="section-title">「'+escHtml(sm?sm.name:'')+'」聚合数据</div><div class="input-group"><label>半径 (km)</label><input type="range" min="1" max="10" value="3" step="0.5" oninput="document.getElementById(\'radius-val\').textContent=this.value+\'km\';window._aggRadius=parseFloat(this.value)" style="width:100%;"><span id="radius-val" style="font-weight:600;">3km</span></div><button class="btn btn-sm" onclick="loadAggregation('+supermarketId+')">查询</button><button class="btn btn-sm btn-secondary" onclick="renderAdminSupermarkets()" style="margin-left:6px;">&larr; 返回</button><div id="agg-result" style="margin-top:12px;"></div></div>';
+    window._aggRadius = 3;
+    loadAggregation(supermarketId);
+}
+
+async function loadAggregation(supermarketId) {
+    const radius = window._aggRadius || 3;
+    const resultEl = document.getElementById('agg-result');
+    resultEl.innerHTML = '<div class="loading-wrap"><div class="spinner"></div></div>';
+    try {
+        const data = await api('GET', '/admin/supermarket/'+supermarketId+'/aggregate?radius_km='+radius);
+        let html = '<div style="margin-top:12px;"><div style="font-weight:600;">覆盖用户: '+data.user_count+' 人 · 半径 '+data.radius_km+'km</div>';
+        if (data.total_ingredients.length > 0) { html += '<div class="card" style="margin-top:12px;"><div class="section-title">食材汇总</div>'+data.total_ingredients.map(i => '<div class="shop-row"><span>'+i.name+'</span><span class="qty">'+i.display+'</span></div>').join('')+'</div>'; }
+        if (data.users.length > 0) { html += '<div style="margin-top:12px;"><div class="section-title">用户明细</div>'; for (const u of data.users) { html += '<div class="card" style="margin:8px 0;"><div style="font-weight:600;">'+escHtml(u.nickname)+' <span style="font-weight:400;font-size:12px;color:var(--text-secondary);">'+u.distance_km+'km</span></div><div style="font-size:12px;color:var(--text-tertiary);">'+escHtml(u.address)+'</div><div style="margin-top:4px;">'+u.ingredients.map(i => '<span style="display:inline-block;background:var(--bg);padding:2px 8px;border-radius:4px;margin:2px;font-size:12px;">'+i.name+' '+i.display+'</span>').join('')+'</div></div>'; } html += '</div>'; }
+        else { html += '<p style="color:var(--text-secondary);text-align:center;padding:20px;">该范围内暂无用户数据</p>'; }
+        html += '</div>';
+        resultEl.innerHTML = html;
+    } catch(e) { resultEl.innerHTML = '<p style="color:#d32f2f;">加载失败: '+e.message+'</p>'; }
+}
+
+// ── Ingredient Management ──
+function renderAdminIngredients() {
+    adminCurrentView = 'ingredients';
+    let html = '<div class="card" style="display:flex;justify-content:space-between;align-items:center;"><span style="font-weight:700;font-size:17px;">食材管理 ('+adminIngredients.length+'种)</span><button class="btn btn-sm" onclick="showCreateIngredient()">+ 新建</button></div>';
+    const cats = [...new Set(adminIngredients.map(i => i.category))];
+    for (const cat of cats) {
+        const items = adminIngredients.filter(i => i.category === cat);
+        html += '<div class="card" style="margin:8px 0;"><div class="section-title">'+cat+' ('+items.length+')</div>';
+        html += items.map(ing => '<div class="shop-row" style="align-items:center;"><span style="font-weight:500;">'+escHtml(ing.name)+'</span><span style="font-size:11px;color:var(--text-tertiary);">'+ing.calories_per_100g+'kcal/100g · ¥'+ing.estimated_price_per_500g+'/500g</span><button class="btn btn-sm btn-text" onclick="showEditIngredient('+ing.id+')" style="padding:2px 8px;">编辑</button><button class="btn btn-sm btn-text" onclick="removeIngredient('+ing.id+')" style="padding:2px 8px;color:#d32f2f;">下架</button></div>').join('');
+        html += '</div>';
+    }
+    document.getElementById('admin-content').innerHTML = html;
+}
+
+function showCreateIngredient() { document.getElementById('admin-content').innerHTML = buildIngredientForm('新建食材', {}, saveCreateIngredient, renderAdminIngredients); }
+function showEditIngredient(id) { const ing = adminIngredients.find(i => i.id === id); if (!ing) return; document.getElementById('admin-content').innerHTML = buildIngredientForm('编辑食材', ing, (data) => saveEditIngredient(id, data), renderAdminIngredients); }
+
+function buildIngredientForm(title, defaults, saveFn, cancelFn) {
+    const html = '<div class="card"><div class="section-title">'+title+'</div><div class="input-group"><label>名称</label><input type="text" id="ing-name" value="'+escHtml(defaults.name||'')+'"></div><div class="input-group"><label>分类</label><input type="text" id="ing-cat" value="'+escHtml(defaults.category||'')+'" placeholder="如：肉类、蔬菜、主食"></div><div class="input-group"><label>热量/100g</label><input type="number" id="ing-cal" value="'+(defaults.calories_per_100g||0)+'"></div><div class="input-group"><label>蛋白/100g</label><input type="number" id="ing-protein" value="'+(defaults.protein_per_100g||0)+'" step="0.1"></div><div class="input-group"><label>碳水/100g</label><input type="number" id="ing-carbs" value="'+(defaults.carbs_per_100g||0)+'" step="0.1"></div><div class="input-group"><label>脂肪/100g</label><input type="number" id="ing-fat" value="'+(defaults.fat_per_100g||0)+'" step="0.1"></div><div class="input-group"><label>单价/500g</label><input type="number" id="ing-price" value="'+(defaults.estimated_price_per_500g||0)+'" step="0.1"></div><div class="input-group"><label>单位</label><input type="text" id="ing-unit" value="'+escHtml(defaults.unit||'g')+'"></div><div style="display:flex;gap:10px;margin-top:12px;"><button class="btn btn-secondary" onclick="renderAdminIngredients()">取消</button><button class="btn" id="ing-save-btn">保存</button></div></div>';
+    setTimeout(() => { document.getElementById('ing-save-btn').onclick = async () => { const data = { name: document.getElementById('ing-name').value.trim(), category: document.getElementById('ing-cat').value.trim() || '其他', calories_per_100g: parseInt(document.getElementById('ing-cal').value) || 0, protein_per_100g: parseFloat(document.getElementById('ing-protein').value) || 0, carbs_per_100g: parseFloat(document.getElementById('ing-carbs').value) || 0, fat_per_100g: parseFloat(document.getElementById('ing-fat').value) || 0, estimated_price_per_500g: parseFloat(document.getElementById('ing-price').value) || 0, unit: document.getElementById('ing-unit').value.trim() || 'g' }; if (!data.name) { toast('请输入名称'); return; } await saveFn(data); }; }, 50);
+    return html;
+}
+
+async function saveCreateIngredient(data) { try { await api('POST', '/admin/ingredient', data); toast('创建成功'); adminIngredients = await api('GET', '/admin/ingredients'); renderAdminIngredients(); } catch(e) { toast('创建失败: '+e.message); } }
+async function saveEditIngredient(id, data) { try { await api('PUT', '/admin/ingredient/'+id, data); toast('已更新'); adminIngredients = await api('GET', '/admin/ingredients'); renderAdminIngredients(); } catch(e) { toast('更新失败: '+e.message); } }
+async function removeIngredient(id) { if (!confirm('确认下架此食材？')) return; try { await api('DELETE', '/admin/ingredient/'+id); toast('已下架'); adminIngredients = await api('GET', '/admin/ingredients'); renderAdminIngredients(); } catch(e) { toast('下架失败: '+e.message); } }
+
+// ── User Management ──
+async function renderAdminUsers() {
+    try { adminStats = await api('GET', '/admin/stats'); adminUsers = await api('GET', '/admin/users?limit=100'); } catch(e) { adminStats = null; adminUsers = []; }
+    renderUsersPage();
+}
+
+function renderUsersPage() {
+    const goalLabels = { healthy: '健康维持', muscle_gain: '增肌', fat_loss: '减脂', shaping: '塑形' };
+    const genderLabels = { male: '男', female: '女', unknown: '未设置' };
+    const cookLabels = { low: '初级', medium: '中级', high: '高级' };
+    const s = adminStats || {};
+    let html = '<div class="card" style="display:flex;justify-content:space-between;align-items:center;"><span style="font-weight:700;font-size:17px;">用户管理</span><span style="font-size:13px;color:var(--text-secondary);">共 '+(s.total_users||0)+' 人</span></div>';
+    html += '<div class="delivery-summary-bar"><span class="summary-badge">用户 '+(s.total_users||0)+'</span><span class="summary-badge" style="background:#e8f5e9;">方案 '+(s.total_meal_plans||0)+'</span><span class="summary-badge" style="background:#e3f2fd;">食材 '+(s.total_ingredients||0)+'</span><span class="summary-badge" style="background:#fff3e0;">商超 '+(s.total_supermarkets||0)+'</span></div>';
+    if (adminUsers.length === 0) { html += '<div class="empty-state"><p>暂无用户数据</p></div>'; }
+    else {
+        for (const u of adminUsers) {
+            const bmi = u.height_cm > 0 ? (u.weight_kg / ((u.height_cm/100)**2)).toFixed(1) : '-';
+            html += '<div class="card" style="margin:8px 0;"><div style="display:flex;justify-content:space-between;align-items:center;"><div><span style="font-weight:600;font-size:15px;">'+(escHtml(u.nickname)||'未命名用户')+'</span>'+(u.is_admin?'<span style="background:#000;color:#fff;padding:1px 6px;border-radius:4px;font-size:10px;margin-left:6px;">管理员</span>':'')+'</div><span style="font-size:12px;color:var(--text-tertiary);">ID: '+u.id+'</span></div><div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:8px;font-size:13px;color:var(--text-secondary);"><span>'+(genderLabels[u.gender]||u.gender)+' · '+u.age+'岁</span><span>'+u.height_cm+'cm · '+u.weight_kg+'kg</span><span>BMI '+bmi+'</span><span>体脂 '+u.body_fat_pct+'%</span></div><div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:6px;font-size:12px;"><span style="background:var(--bg);padding:2px 8px;border-radius:4px;">目标: '+(goalLabels[u.goal_type]||u.goal_type)+'</span><span style="background:var(--bg);padding:2px 8px;border-radius:4px;">目标体重 '+u.target_weight_kg+'kg</span><span style="background:var(--bg);padding:2px 8px;border-radius:4px;">厨艺: '+(cookLabels[u.cooking_level]||u.cooking_level)+'</span></div>'+(u.address?'<div style="font-size:12px;color:var(--text-tertiary);margin-top:4px;">'+escHtml(u.address)+'</div>':'')+'<div style="font-size:11px;color:var(--text-tertiary);margin-top:4px;">注册于 '+new Date(u.created_at).toLocaleDateString('zh-CN')+'</div></div>';
+        }
+    }
+    document.getElementById('admin-content').innerHTML = html;
+}
+
+// ── Delivery Management ──
+async function renderAdminDelivery() {
+    try { adminDeliveryTasks = await api('GET', buildDeliveryUrl('/admin/delivery/tasks')); adminDeliverySummary = await api('GET', buildDeliveryUrl('/admin/delivery/summary')); } catch(e) { adminDeliveryTasks = []; adminDeliverySummary = {}; }
+    renderDeliveryPage();
+}
+
+function buildDeliveryUrl(path) {
+    let url = path + '?limit=200';
+    if (adminDeliveryFilters.supermarket_id) url += '&supermarket_id=' + adminDeliveryFilters.supermarket_id;
+    if (adminDeliveryFilters.status) url += '&status=' + adminDeliveryFilters.status;
+    if (adminDeliveryFilters.date) url += '&date=' + adminDeliveryFilters.date;
+    return url;
+}
+
+function renderDeliveryPage() {
+    let html = '<div class="card" style="display:flex;justify-content:space-between;align-items:center;"><span style="font-weight:700;font-size:17px;">配送管理</span><button class="btn btn-sm" onclick="generateDeliveryTasks()">+ 生成配送任务</button></div>';
+    html += '<div class="delivery-filter-bar"><select id="del-filter-sm" onchange="adminDeliveryFilters.supermarket_id=this.value;renderAdminDelivery()"><option value="">全部商超</option>'+adminSupermarkets.map(s => '<option value="'+s.id+'" '+(adminDeliveryFilters.supermarket_id==s.id?'selected':'')+'>'+escHtml(s.name)+'</option>').join('')+'</select><input type="date" id="del-filter-date" value="'+adminDeliveryFilters.date+'" onchange="adminDeliveryFilters.date=this.value;renderAdminDelivery()" style="width:130px;"><select id="del-filter-status" onchange="adminDeliveryFilters.status=this.value;renderAdminDelivery()"><option value="">全部状态</option><option value="pending" '+(adminDeliveryFilters.status==='pending'?'selected':'')+'>待处理</option><option value="preparing" '+(adminDeliveryFilters.status==='preparing'?'selected':'')+'>备货中</option><option value="shipped" '+(adminDeliveryFilters.status==='shipped'?'selected':'')+'>已发货</option><option value="delivered" '+(adminDeliveryFilters.status==='delivered'?'selected':'')+'>已送达</option><option value="cancelled" '+(adminDeliveryFilters.status==='cancelled'?'selected':'')+'>已取消</option></select></div>';
+    const s = adminDeliverySummary;
+    html += '<div class="delivery-summary-bar"><span class="summary-badge">共 '+(s.total||0)+' 单</span><span class="summary-badge" style="background:#fff3cd;">待处理 '+(s.pending||0)+'</span><span class="summary-badge" style="background:#cce5ff;">备货中 '+(s.preparing||0)+'</span><span class="summary-badge" style="background:#d4edda;">已发货 '+(s.shipped||0)+'</span><span class="summary-badge" style="background:#d1ecf1;">已送达 '+(s.delivered||0)+'</span><span class="summary-badge" style="background:#f8d7da;">已取消 '+(s.cancelled||0)+'</span></div>';
+    if (adminDeliveryTasks.length === 0) { html += '<div class="empty-state"><p>暂无配送任务</p><p style="font-size:13px;">点击上方按钮生成配送任务</p></div>'; }
+    else { for (const task of adminDeliveryTasks) { html += renderDeliveryTaskCard(task); } }
+    document.getElementById('admin-content').innerHTML = html;
+}
+
+function renderDeliveryTaskCard(task) {
+    const labels = { pending: '待处理', preparing: '备货中', shipped: '已发货', delivered: '已送达', cancelled: '已取消' };
+    const isExpanded = adminDeliveryExpanded[task.id] || false;
+    let actions = '';
+    if (task.status === 'pending') { actions = '<button class="btn btn-sm" onclick="updateTaskStatus('+task.id+',\'preparing\')">开始备货</button><button class="btn btn-sm btn-text" onclick="updateTaskStatus('+task.id+',\'cancelled\')" style="color:#d32f2f;">取消</button>'; }
+    else if (task.status === 'preparing') { actions = '<button class="btn btn-sm" onclick="updateTaskStatus('+task.id+',\'shipped\')">标记发货</button><button class="btn btn-sm btn-text" onclick="updateTaskStatus('+task.id+',\'cancelled\')" style="color:#d32f2f;">取消</button>'; }
+    else if (task.status === 'shipped') { actions = '<button class="btn btn-sm" onclick="updateTaskStatus('+task.id+',\'delivered\')">标记送达</button>'; }
+    return '<div class="card" style="margin:8px 0;"><div style="display:flex;justify-content:space-between;align-items:flex-start;"><div style="flex:1;min-width:0;"><div style="font-weight:600;font-size:15px;">'+escHtml(task.user_nickname)+' · 第'+task.day_index+'天</div><div style="font-size:12px;color:var(--text-secondary);margin:2px 0;">'+escHtml(task.supermarket_name)+'</div><div style="font-size:12px;color:var(--text-tertiary);">'+(escHtml(task.user_address)||'无地址')+' · '+task.delivery_date+'</div></div><span class="delivery-status '+task.status+'">'+(labels[task.status]||task.status)+'</span></div>'+(actions?'<div style="margin-top:8px;display:flex;gap:6px;flex-wrap:wrap;">'+actions+'</div>':'')+'<div style="margin-top:6px;"><span class="instructions-toggle" onclick="toggleDeliveryDetail('+task.id+')" id="del-toggle-'+task.id+'">'+(isExpanded?'▾ 收起明细':'▸ 查看食材明细')+'</span></div><div class="instructions-body '+(isExpanded?'open':'')+'" id="del-detail-'+task.id+'">'+renderDeliveryIngredients(task.ingredients_json)+'</div></div>';
+}
+
+function renderDeliveryIngredients(jsonStr) {
+    try {
+        const meals = typeof jsonStr === 'string' ? JSON.parse(jsonStr) : jsonStr;
+        if (!Array.isArray(meals) || meals.length === 0) return '<p style="font-size:12px;color:var(--text-tertiary);">无食材数据</p>';
+        const typeNames = { breakfast: '早餐', lunch: '午餐', dinner: '晚餐' };
+        return meals.map(meal => '<div style="margin:6px 0;"><div style="font-weight:600;font-size:13px;">'+(typeNames[meal.meal_type]||meal.meal_type)+': '+escHtml(meal.meal_name)+'</div><div style="margin-left:8px;">'+(meal.ingredients||[]).map(ing => '<span style="display:inline-block;background:var(--bg);padding:2px 8px;border-radius:4px;margin:2px;font-size:11px;">'+escHtml(ing.name)+' '+ing.quantity_g+'g</span>').join('')+'</div></div>').join('');
+    } catch(e) { return '<p style="font-size:12px;color:var(--text-tertiary);">解析失败</p>'; }
+}
+
+function toggleDeliveryDetail(taskId) {
+    adminDeliveryExpanded[taskId] = !adminDeliveryExpanded[taskId];
+    const el = document.getElementById('del-detail-'+taskId);
+    const tgl = document.getElementById('del-toggle-'+taskId);
+    if (el) el.classList.toggle('open');
+    if (tgl) tgl.textContent = adminDeliveryExpanded[taskId] ? '▾ 收起明细' : '▸ 查看食材明细';
+}
+
+async function updateTaskStatus(taskId, status) {
+    try { await api('PUT', '/admin/delivery/task/'+taskId+'/status', { status }); toast('状态已更新'); renderAdminDelivery(); } catch(e) { toast('更新失败: '+e.message); }
+}
+
+async function generateDeliveryTasks() {
+    const smVal = document.getElementById('del-filter-sm')?.value || '';
+    const dateVal = document.getElementById('del-filter-date')?.value || '';
+    let url = '/admin/delivery/generate?';
+    if (smVal) url += '&supermarket_id=' + smVal;
+    if (dateVal) url += '&delivery_date=' + dateVal;
+    try {
+        document.getElementById('admin-content').innerHTML = '<div class="loading-wrap"><div class="spinner"></div><p class="loading-text">正在生成配送任务...</p></div>';
+        const result = await api('POST', url);
+        toast('已生成 ' + result.tasks_created + ' 个配送任务');
+        renderAdminDelivery();
+    } catch(e) { toast('生成失败: '+e.message); renderAdminDelivery(); }
+}
+
+// ── Init ──
+(async function() {
+    token = localStorage.getItem('token') || '';
+    if (!token) { window.location.href = '/'; return; }
+    try {
+        const user = await api('GET', '/user/profile');
+        if (!user.is_admin) { toast('需要管理员权限'); setTimeout(() => { window.location.href = '/'; }, 1500); return; }
+        document.getElementById('admin-user').textContent = user.nickname || '管理员';
+        adminSupermarkets = await api('GET', '/admin/supermarkets');
+        adminIngredients = await api('GET', '/admin/ingredients');
+        switchAdminTab('supermarkets');
+    } catch(e) { toast('加载失败: '+e.message); setTimeout(() => { window.location.href = '/'; }, 1500); }
+})();
+</script>
+</body>
+</html>
