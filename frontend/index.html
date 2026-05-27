@@ -428,7 +428,7 @@
         <div id="swap-ingredients-list" style="margin-bottom:12px;"></div>
         <div id="swap-alternatives"></div>
         <div class="warning-box" style="display:none;" id="swap-warning-box">
-            替换后营养结构可能发生变化，本方案仅供参考。?        </div>
+            替换后营养结构可能发生变化，本方案仅供参考。        </div>
         <button class="btn btn-secondary" onclick="closeSwap()" style="margin-top:12px;">关闭</button>
     </div>
 </div>
@@ -601,7 +601,7 @@ function renderQStep() {
             <div class="card">
                 <div class="input-group"><label>每日餐次</label><select onchange="qData.meals_per_day=parseInt(this.value)" id="q-meals"><option value="2" ${qData.meals_per_day===2?'selected':''}>2 餐</option><option value="3" ${qData.meals_per_day===3?'selected':''}>3 餐</option><option value="4" ${qData.meals_per_day===4?'selected':''}>4 餐</option><option value="5" ${qData.meals_per_day===5?'selected':''}>5+ 餐</option></select></div>
                 <div class="input-group"><label>零食习惯</label><select onchange="qData.snack_habit=this.value" id="q-snack"><option value="">--</option><option value="不吃" ${qData.snack_habit==='不吃'?'selected':''}>不吃零食</option><option value="偶尔" ${qData.snack_habit==='偶尔'?'selected':''}>偶尔</option><option value="经常" ${qData.snack_habit==='经常'?'selected':''}>经常</option></select></div>
-                <div class="input-group"><label>最长烹饪时间（分钟）?/label><input type="range" min="5" max="60" value="${qData.max_cooking_time_min}" oninput="qData.max_cooking_time_min=parseInt(this.value);document.getElementById('cook-time-val').textContent=this.value+'分钟'" style="width:100%;"><span id="cook-time-val" style="font-size:14px;font-weight:600;">${qData.max_cooking_time_min}分钟</span></div>
+                <div class="input-group"><label>最长烹饪时间（分钟）</label><input type="range" min="5" max="60" value="${qData.max_cooking_time_min}" oninput="qData.max_cooking_time_min=parseInt(this.value);document.getElementById('cook-time-val').textContent=this.value+'分钟'" style="width:100%;"><span id="cook-time-val" style="font-size:14px;font-weight:600;">${qData.max_cooking_time_min}分钟</span></div>
             </div>
             <div class="card"><div class="section-title">可用厨具</div>
                 ${equipmentOptions.map(e => `<span class="tag ${qData.cooking_equipment.includes(e)?'selected':''}" onclick="toggleQMulti('cooking_equipment','${e}')">${e}</span>`).join('')}
@@ -773,7 +773,7 @@ function renderHome() {
         statusEl.innerHTML = '';
         pickerEl.innerHTML = '';
         nutrientsEl.innerHTML = '';
-        mealsEl.innerHTML = '<div class="empty-state"><p>还没有饮食方案?/p><button class="btn" onclick="regeneratePlan()">生成方案</button></div>';
+        mealsEl.innerHTML = '<div class="empty-state"><p>还没有饮食方案</p><button class="btn" onclick="regeneratePlan()">生成方案</button></div>';
         actionsEl.innerHTML = '';
         return;
     }
@@ -866,7 +866,7 @@ async function viewMealDetail(mealId) {
             ${meal.ingredients.map(i => `<div class="shop-row"><span>${i.name}</span><span class="qty">${i.quantity_g}g</span></div>`).join('')}
         </div>
         ${meal.instructions ? `<div class="card"><div class="section-title">做法</div><p style="font-size:14px;line-height:1.6;">${meal.instructions}</p></div>` : ''}
-        ${meal.is_user_swapped ? '<div class="warning-box">此餐已替换食材，营养结构可能与原方案不同，仅供参考。?/div>' : ''}
+        ${meal.is_user_swapped ? '<div class="warning-box">此餐已替换食材，营养结构可能与原方案不同，仅供参考。</div>' : ''}
     `;
     navigateTo('detail');
 }
@@ -951,7 +951,7 @@ async function loadHealthHistory() {
 
 async function generateMonthlyReport() {
     try {
-        document.getElementById('monthly-report').innerHTML = '<div class="loading-wrap"><div class="spinner"></div><p class="loading-text">AI 生成报告中?..</p></div>';
+        document.getElementById('monthly-report').innerHTML = '<div class="loading-wrap"><div class="spinner"></div><p class="loading-text">AI 生成报告中...</p></div>';
         const report = await api('GET', '/health/report/monthly');
         document.getElementById('monthly-report').innerHTML = `
             <div class="card" style="margin-top:12px;">
@@ -1065,14 +1065,14 @@ function renderShoppingList() {
         showInstructions = {};
         const anyLocked = data.days.some(d => isDayLocked(d.day_index));
         if (anyLocked) {
-            html += `<div class="lock-banner"><span>&#128274;</span><span>已确认订单配送日?天内已锁定，不可修改。第3天起可正常编辑。?/span></div>`;
+            html += `<div class="lock-banner"><span>&#128274;</span><span>已确认订单配送日 2 天内已锁定，不可修改。第3天起可正常编辑。</span></div>`;
         }
         for (const day of data.days) {
             const dayLocked = isDayLocked(day.day_index);
             const hasConfirmed = confirmedOrders.some(o => o.day_index === day.day_index && o.status === 'confirmed');
             html += `<div class="card" style="margin-bottom:14px;">
                 <div class="section-title" style="font-size:14px;color:var(--text);">
-                    ?${day.day_index} ?                    ${dayLocked ? '<span class="lock-badge">&#128274; 已锁定?/span>' : (hasConfirmed ? '<span class="lock-badge" style="background:#d4edda;color:#155724;">已确认?(可修改?</span>' : '')}
+                    第${day.day_index}天                    ${dayLocked ? '<span class="lock-badge">&#128274; 已锁定</span>' : (hasConfirmed ? '<span class="lock-badge" style="background:#d4edda;color:#155724;">已确认(可修改)</span>' : '')}
                 </div>`;
             for (const meal of day.meals) {
                 const typeLabel = {breakfast:'早餐',lunch:'午餐',dinner:'晚餐'}[meal.meal_type] || meal.meal_type;
@@ -1081,7 +1081,7 @@ function renderShoppingList() {
                     <div class="meal-type">${typeLabel} · ${meal.meal_source==='ready_to_eat'?'即食':'自制'} · ${meal.cooking_time_min}分钟</div>
                     <div class="meal-name">${escHtml(meal.meal_name)}</div>`;
                 if (meal.instructions) {
-                    html += `<span class="instructions-toggle" onclick="toggleInstructions('${mealKey}')" id="instr-toggle-${mealKey}">?查看做法</span>
+                    html += `<span class="instructions-toggle" onclick="toggleInstructions('${mealKey}')" id="instr-toggle-${mealKey}">📖 查看做法</span>
                         <div class="instructions-body" id="instr-${mealKey}">${escHtml(meal.instructions)}</div>`;
                 }
                 html += `<div style="margin-top:6px;">`;
@@ -1095,9 +1095,9 @@ function renderShoppingList() {
         }
     } else if (data.items) {
         const anyLocked = confirmedOrders.some(o => { const d = getDayDate(o.day_index); if (!d) return false; const todayDate = new Date(); todayDate.setHours(0,0,0,0); return Math.ceil((d.getTime()-todayDate.getTime())/86400000) <= 2; });
-        html += `<div class="card"><div class="section-title">${data.period} 采购清单 · ${data.item_count} 种食材?/div>`;
+        html += `<div class="card"><div class="section-title">${data.period} 采购清单 · ${data.item_count} 种食材</div>`;
         if (anyLocked) {
-            html += `<div class="lock-banner"><span>&#128274;</span><span>部分配送日?天内已锁定。建议切换到"按日配送?模式查看锁定详情。?/span></div>`;
+            html += `<div class="lock-banner"><span>&#128274;</span><span>部分配送日 2 天内已锁定。建议切换到"按日配送"模式查看锁定详情。</span></div>`;
         }
         for (let idx = 0; idx < orderItems.length; idx++) {
             html += renderOrderRow(idx, false);
@@ -1126,7 +1126,7 @@ function renderOrderRow(idx, locked) {
 function toggleOrderItem(idx) {
     const item = orderItems[idx];
     if (item && item.mealRef && shoppingMode === 'daily' && isDayLocked(item.mealRef.day)) {
-        toast('该食材所在配送日?天内已锁定，无法修改');
+        toast('该食材所在配送日 2 天内已锁定，无法修改');
         return;
     }
     orderItems[idx].checked = !orderItems[idx].checked;
@@ -1138,7 +1138,7 @@ function toggleOrderItem(idx) {
 function updateOrderQty(idx, val) {
     const item = orderItems[idx];
     if (item && item.mealRef && shoppingMode === 'daily' && isDayLocked(item.mealRef.day)) {
-        toast('该食材所在配送日?天内已锁定，无法修改');
+        toast('该食材所在配送日 2 天内已锁定，无法修改');
         const rows = document.querySelectorAll('#shopping-items .shop-order-row');
         if (rows[idx]) {
             const qtyInput = rows[idx].querySelector('.qty-input');
@@ -1238,10 +1238,10 @@ async function confirmOrder() {
                     items: items,
                 });
                 confirmed++;
-            } catch(e) { toast(`?{dayNum}天下单失败? ${e.message}`); }
+            } catch(e) { toast(`${dayNum}天下单失败: ${e.message}`); }
         }
         if (confirmed > 0) {
-            toast(`已确认?${confirmed} 天的订单`);
+            toast(`已确认 ${confirmed} 天的订单`);
             // Reload to get updated lock state
             loadShoppingList(currentShoppingPeriod);
         }
@@ -1268,7 +1268,7 @@ function toggleInstructions(key) {
     const body = document.getElementById('instr-' + key);
     const toggle = document.getElementById('instr-toggle-' + key);
     if (body) body.classList.toggle('open');
-    if (toggle) toggle.textContent = showInstructions[key] ? '?隐藏做法' : '?查看做法';
+    if (toggle) toggle.textContent = showInstructions[key] ? '📖 隐藏做法' : '📖 查看做法';
 }
 
 // ── Mine ──
